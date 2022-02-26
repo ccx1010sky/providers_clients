@@ -1,0 +1,25 @@
+A non exhaustive list of features that I have found to be missing or have poor functionality.
+
+1. Sharing client data between practitioners.
+	- Choose team members add set access privileges to view/edit/delete client info
+	- Choose non team members and non group members
+	- effectively refer clients between practitioners
+	- track progress
+	- adhere to data protection
+
+2. Practitioners loose access to data when they leave a clinic
+	- make practitioner logins that exist out-with clinic/shop/gym/group structure
+
+3. Poor appointment search and filtering
+	- clients are not properly assigned to practitioners. Should show in list if attended an appointment with practitioner.
+	- easily create day, week month lists of practitioners clients, categorise by: appointment type, to pay, paid, practitioner, date etc
+	- easily get list of contact details for marketing emails, filter by signed up to receive marketing.
+
+4. Generic UI components with fields that I never populated.
+
+5. Dashboards that are not customisable
+
+6. Treatment note reminders - in line with good practice guidelines
+
+
+I will add to these features as I remembers ideas....

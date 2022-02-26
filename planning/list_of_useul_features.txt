@@ -1,0 +1,20 @@
+A non exhaustive list of features that I found useful
+
+1. Online accès to bookings, cross platform.
+
+2. Online booking.
+
+3. Appointment confirmation/reminder emails.
+
+4. Write notes: treatment, appointment
+
+5. Recurring appointments
+
+6. Take payments - produce custom receipts
+
+7. Dashboard - see useful stuff as soon as you log in, I.e. list of treatment notes to complete.
+
+8. Set special requirments notes for client that always pop up booking etc - ie serve nut allergy, or can not lie on back needs special equipment.  Not always implemented very well though!
+
+
+I will add to these as I remember features....
