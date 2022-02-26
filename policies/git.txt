@@ -1,0 +1,11 @@
+Suggested policy for git commits
+
+1. Commits should be done for completed features.
+
+2. Messages should provide enough information to allow identification of what features are present in the build. Example:
+
+	template - "Type of changes - what has been changed - how it has been changed."
+	example. - "Function - classnames - added example method to provide example.
+		   Testing - ClassTests - test exampleTest created - passed."
+
+3. Branching and Merging - tbc
