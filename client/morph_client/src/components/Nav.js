@@ -1,8 +1,7 @@
-import react from "react";
+// import react from "react";
 import { NavData } from "./NavData";
 import { useNavigate } from "react-router-dom";
-
-
+import "../static/css/nav.css";
 
 const Nav = ({}) => {
   const navigate = useNavigate();
@@ -18,7 +17,8 @@ const Nav = ({}) => {
                 key={index}
                 className={item.cName}
               >
-                <img className="navIcon" src={item.icon} />
+                <div className="navIcon" >{item.icon}</div>
+                {/* <img className="navIcon" src={item.icon} /> */}
               </li>
             );
           })}

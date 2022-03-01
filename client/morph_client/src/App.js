@@ -1,19 +1,17 @@
 import './App.css';
-import {BrowserRouter as Router} from 'react-router-dom'
+import {BrowserRouter} from 'react-router-dom'
 import Layout from './components/Layout';
 import WebRoutes from './components/WebRoutes';
-
+import "./App.css";
 
 function App() {
   return (
-    <div>
-
-     <h1>Hello morph appointment</h1>
-     <Router>
+    <div className='App'>
+     <BrowserRouter>
        <Layout>
          <WebRoutes />
        </Layout>
-     </Router>
+     </BrowserRouter>
 
     </div>
   );
