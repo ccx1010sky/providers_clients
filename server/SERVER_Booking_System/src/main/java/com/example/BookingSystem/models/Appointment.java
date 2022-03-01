@@ -13,6 +13,30 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @JsonIgnoreProperties("appointments")
+    @ManyToOne
+    @JoinColumn(name = "provider_id ", nullable = false)
+    private Provider provider;
+
+    @Column(name="type")
+    private String type;
+
+    @Column(name="startTime")
+    private String startTime;
+
+    @Column(name="endTime")
+    private String endTime;
+
+    public Appointment(Provider provider, String type, String startTime, String endTime) {
+        this.provider = provider;
+        this.type = type;
+        this.startTime = startTime;
+        this.endTime = endTime;
+    }
+
+    public Appointment() {
+    }
+
     public Long getId() {
         return id;
     }
@@ -53,25 +77,8 @@ public class Appointment {
         this.endTime = endTime;
     }
 
-    public Appointment(Provider provider, String type, String startTime, String endTime) {
-        this.provider = provider;
-        this.type = type;
-        this.startTime = startTime;
-        this.endTime = endTime;
-    }
 
-    @JsonIgnoreProperties("appointments")
-    @ManyToOne
-    @JoinColumn(name = "provider_id ", nullable = false)
-    private Provider provider;
 
-    @Column(name="type")
-    private String type;
 
-    @Column(name="startTime")
-    private String startTime;
-
-    @Column(name="endTime")
-    private String endTime;
 
 }
