@@ -22,12 +22,18 @@ public class Provider {
     @Column(name="user_name")
     private String userName;
 
-    @Column()
+    @Column(name = "password")
     private String password;
 
     @JsonIgnoreProperties(value="provider")
     @OneToMany(mappedBy = "provider",fetch = FetchType.LAZY)
     private List<Appointment> appointments;
+
+    @JsonIgnoreProperties(value="provider")
+    @OneToMany(mappedBy = "provider",fetch = FetchType.LAZY)
+    private List<Location> locations;
+
+    
 
 
     public Provider(String firstName, String lastName, String userName, String password) {
@@ -36,6 +42,7 @@ public class Provider {
         this.userName = userName;
         this.password = password;
         this.appointments = new ArrayList<>();
+        this.locations = new ArrayList<>();
     }
 
     public Provider(){
@@ -50,6 +57,14 @@ public class Provider {
 
     public String getFirstName() {
         return firstName;
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
 
     public void setFirstName(String firstName) {

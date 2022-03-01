@@ -31,7 +31,7 @@ public class DataLoader implements ApplicationRunner {
         Appointment appointment2 = new Appointment(dave,"Dentist","2:00","3:00");
         appointmentRepository.save(appointment2);
 
-        
+
 
 
 

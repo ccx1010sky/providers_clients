@@ -13,6 +13,12 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+
+    @JsonIgnoreProperties("appointments")
+    @ManyToOne
+    @JoinColumn(name = "client_id ", nullable = false)
+    private Client client;
+
     @JsonIgnoreProperties("appointments")
     @ManyToOne
     @JoinColumn(name = "provider_id ", nullable = false)
