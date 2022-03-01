@@ -1,4 +1,4 @@
-package com.example.BookingSystem.components;
+package com.example.BookingSystem.models;
 
 import javax.persistence.Table;
 

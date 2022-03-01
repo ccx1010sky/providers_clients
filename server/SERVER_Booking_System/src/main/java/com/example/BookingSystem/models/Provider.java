@@ -1,12 +1,13 @@
-package com.example.BookingSystem.components;
+package com.example.BookingSystem.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
-@MappedSuperclass
-abstract public class User {
+@Entity
+@Table(name="providers")
+public class Provider {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,11 +24,18 @@ abstract public class User {
     @Column()
     private String password;
 
-    public User(String firstName, String lastName, String userName, String password) {
+    @JsonIgnoreProperties(value="providers")
+    @OneToMany(mappedBy = "providers",fetch = FetchType.LAZY)
+
+    private List<Appointment> appointments;
+
+
+    public Provider(String firstName, String lastName, String userName, String password, List<Appointment> appointments) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.userName = userName;
         this.password = password;
+        this.appointments = appointments;
     }
 
     public Long getId() {
@@ -68,5 +76,13 @@ abstract public class User {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
     }
 }
