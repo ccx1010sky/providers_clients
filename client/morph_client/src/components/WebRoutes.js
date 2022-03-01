@@ -1,5 +1,12 @@
 import React from 'react'
 import { Route, Routes } from "react-router-dom";
+import HomePage from '../containers/HomePage';
+import Login from '../containers/Login';
+import Signup from '../containers/Signup';
+import Provider from '../containers/Provider';
+import Booking from '../containers/Booking';
+import Client from '../containers/Client';
+
 
 const WebRoutes = () => {
   return (
