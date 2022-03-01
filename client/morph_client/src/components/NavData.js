@@ -1,10 +1,10 @@
 
 export const NavData = [
-  {
-    onClick: (navigate) => navigate("/"),
-    icon: "logo",
-    cName: "nav-text",
-  },
+  // {
+  //   onClick: (navigate) => navigate("/"),
+  //   icon: "logo",
+  //   cName: "nav-text",
+  // },
   {
     onClick: (navigate) => navigate("/Login"),
     icon: "Login",
