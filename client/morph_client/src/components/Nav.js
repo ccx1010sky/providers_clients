@@ -10,7 +10,7 @@ const Nav = ({}) => {
   return (
     <div className="header">
       <nav>
-        <a className="logo" href="/">logo</a>
+        <a className="logo" href="/"  >Logo</a>
         <ul className="nav-links">
           {NavData.map((item, index) => {
             return (

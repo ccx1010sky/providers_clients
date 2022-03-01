@@ -25,6 +25,11 @@ export const NavData = [
     icon: "Client",
     cName: "nav-text",
   },
+  {
+    onClick: (navigate) => navigate("/Booking"),
+    icon: "Booking",
+    cName: "nav-text",
+  },
 ];
 
 
