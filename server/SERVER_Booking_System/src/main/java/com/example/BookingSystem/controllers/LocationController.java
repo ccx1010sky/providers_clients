@@ -19,4 +19,19 @@ public class LocationController {
     public ResponseEntity<List<Location>> getAllLocations(){
         return new ResponseEntity<>(locationRepository.findAll(), HttpStatus.OK);
     }
+
+    //SHOW
+
+
+    // CREATE
+
+
+    // UPDATE
+
+
+    // DESTROY
+
+
+
+    // Custom Routes
 }

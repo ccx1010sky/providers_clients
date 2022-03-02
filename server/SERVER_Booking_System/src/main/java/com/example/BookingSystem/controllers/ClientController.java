@@ -19,4 +19,19 @@ public class ClientController {
     public ResponseEntity<List<Client>> getAllClients(){
         return new ResponseEntity<>(clientRepository.findAll(), HttpStatus.OK);
     }
+
+    //SHOW
+
+
+    // CREATE
+
+
+    // UPDATE
+
+
+    // DESTROY
+
+
+
+    // Custom Routes
 }

@@ -30,28 +30,22 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args){
         Provider provider = new Provider("Dave","Andrews","DA25","1234");
         providerRepository.save(provider);
-
         Provider provider2 = new Provider("Jenny","Andrews","JA25","1234");
         providerRepository.save(provider2);
-
         Provider provider3 = new Provider("Bernie","Andrews","BA25","1234");
         providerRepository.save(provider3);
 
         Admin admin = new Admin("Freya","Jules","FJ25","1234");
         adminRepository.save(admin);
-
         Admin admin2 = new Admin("Jessica","Mathews","JM25","1234");
         adminRepository.save(admin2);
-
         Admin admin3 = new Admin("Alfred","Doyle","AD25","1234");
         adminRepository.save(admin3);
 
         Client client = new Client("John","Smith","JS25","1234");
         clientRepository.save(client);
-
         Client client2 = new Client("Mandy","Mendoza","MM25","1234");
         clientRepository.save(client2);
-
         Client client3 = new Client("Sally","Simpleton","SS25","1234");
         clientRepository.save(client3);
 
@@ -71,15 +65,16 @@ public class DataLoader implements ApplicationRunner {
 
         Appointment appointment1 = new Appointment(client, provider, location, "massage","19:00","18:00");
         appointmentRepository.save(appointment1);
-
         Appointment appointment2 = new Appointment(client, provider2, location,"Dentist","2:00","3:00");
         appointmentRepository.save(appointment2);
 
+        // Add rooms available for use to the locations
         location.addRoom(room);
         location.addRoom(room2);
         location.addRoom(room3);
         locationRepository.save(location);
 
+        // Give providers locations they are available
         provider.addLocation(location);
         provider.addLocation(location2);
         provider.addLocation(location3);

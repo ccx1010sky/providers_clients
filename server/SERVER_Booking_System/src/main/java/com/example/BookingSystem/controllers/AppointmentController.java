@@ -20,5 +20,20 @@ public class AppointmentController {
         return new ResponseEntity<>(appointmentRepository.findAll(), HttpStatus.OK);
     }
 
+    //SHOW
+
+
+    // CREATE
+
+
+    // UPDATE
+
+
+    // DESTROY
+
+
+
+    // Custom Routes
+
 
 }

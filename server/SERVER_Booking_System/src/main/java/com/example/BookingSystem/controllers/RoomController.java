@@ -19,4 +19,19 @@ public class RoomController {
     public ResponseEntity<List<Room>> getAllRooms(){
         return new ResponseEntity<>(roomRepository.findAll(), HttpStatus.OK);
     }
+
+    //SHOW
+
+
+    // CREATE
+
+
+    // UPDATE
+
+
+    // DESTROY
+
+
+
+    // Custom Routes
 }
