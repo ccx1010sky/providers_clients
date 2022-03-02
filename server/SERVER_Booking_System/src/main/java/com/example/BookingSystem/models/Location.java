@@ -28,9 +28,12 @@ public class Location {
     private String email;
 
     @JsonIgnoreProperties(value="location")
-    //@JsonBackReference
     @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
     private List<Room> workspaces;
+
+    @JsonIgnoreProperties(value="location")
+    @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
+    private List<Appointment> appointments;
 
     @ManyToMany
     @JsonIgnoreProperties({"locations"})

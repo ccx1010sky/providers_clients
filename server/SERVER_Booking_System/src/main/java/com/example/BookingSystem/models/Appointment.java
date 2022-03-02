@@ -1,6 +1,7 @@
 package com.example.BookingSystem.models;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -33,15 +34,30 @@ public class Appointment {
     @Column(name="endTime")
     private String endTime;
 
-    public Appointment(Client client, Provider provider, String type, String startTime, String endTime) {
+    //@JsonIgnoreProperties({"appointments"})
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "location_id", nullable = false)
+    private Location location;
+
+    public Appointment(Client client, Provider provider, Location location, String type, String startTime, String endTime) {
         this.client = client;
         this.provider = provider;
+        this.location = location;
         this.type = type;
         this.startTime = startTime;
         this.endTime = endTime;
     }
 
     public Appointment() {
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
     }
 
     public Long getId() {

@@ -34,7 +34,8 @@ public class Provider {
 
 
     @ManyToMany
-    @JsonIgnoreProperties({"providers"})
+    //@JsonIgnoreProperties({"providers"})
+    @JsonBackReference
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "locations_providers",
