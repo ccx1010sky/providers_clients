@@ -1,0 +1,30 @@
+.header {
+  width: 100vw;
+  height: 30wh;
+  background-color: brown;
+}
+
+.logo{
+    margin-left: 30px;
+
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+.nav-links{
+    display: flex;
+    justify-content: flex-end;
+  list-style: none;
+
+}
+
+
+
+.nav-text {
+  display: inline-block;
+  padding: 0 20px;
+}
