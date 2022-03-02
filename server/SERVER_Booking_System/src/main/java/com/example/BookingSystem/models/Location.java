@@ -1,5 +1,6 @@
 package com.example.BookingSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cascade;
 
@@ -14,8 +15,6 @@ public class Location {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-
-
     @Column(name="name")
     private String name;
 
@@ -29,8 +28,9 @@ public class Location {
     private String email;
 
     @JsonIgnoreProperties(value="location")
+    //@JsonBackReference
     @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
-    private List<Workspace> workspaces;
+    private List<Room> workspaces;
 
     @ManyToMany
     @JsonIgnoreProperties({"locations"})
@@ -106,11 +106,11 @@ public class Location {
         this.providers.add(provider);
     }
 
-    public List<Workspace> getWorkspaces() {
+    public List<Room> getWorkspaces() {
         return workspaces;
     }
 
-    public void setWorkspaces(List<Workspace> workspaces) {
+    public void setWorkspaces(List<Room> workspaces) {
         this.workspaces = workspaces;
     }
 
@@ -120,5 +120,9 @@ public class Location {
 
     public void setProviders(List<Provider> providers) {
         this.providers = providers;
+    }
+
+    public void addRoom(Room room){
+        this.workspaces.add(room);
     }
 }

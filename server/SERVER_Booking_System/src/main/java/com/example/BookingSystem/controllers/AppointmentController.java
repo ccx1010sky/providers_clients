@@ -16,7 +16,7 @@ public class AppointmentController {
     AppointmentRepository appointmentRepository;
 
     @GetMapping("/appointments")
-    public ResponseEntity<List<Appointment>> getAppointments(){
+    public ResponseEntity<List<Appointment>> getAllAppointments(){
         return new ResponseEntity<>(appointmentRepository.findAll(), HttpStatus.OK);
     }
 

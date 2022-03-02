@@ -18,7 +18,7 @@ public class AdminController {
 
 
     @GetMapping("/admins")
-    public ResponseEntity<List<Admin>> getAdmins(){
+    public ResponseEntity<List<Admin>> getAllAdmins(){
         return new ResponseEntity<>(adminRepository.findAll(), HttpStatus.OK);
     }
 }

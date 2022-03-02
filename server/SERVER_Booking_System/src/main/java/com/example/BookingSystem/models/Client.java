@@ -1,5 +1,6 @@
 package com.example.BookingSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -25,8 +26,9 @@ public class Client {
     @Column(name="password")
     private String password;
 
-    @JsonIgnoreProperties({"client"})
-    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
+    //@JsonIgnoreProperties({"client"})
+    @JsonBackReference
+    @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
     public Client(){

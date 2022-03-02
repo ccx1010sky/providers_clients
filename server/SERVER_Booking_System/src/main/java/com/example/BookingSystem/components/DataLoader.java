@@ -28,22 +28,53 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args){
-        Provider dave = new Provider("Dave","Andrews","DA25","1234");
-        providerRepository.save(dave);
+        Provider provider = new Provider("Dave","Andrews","DA25","1234");
+        providerRepository.save(provider);
+
+        Provider provider2 = new Provider("Jenny","Andrews","JA25","1234");
+        providerRepository.save(provider2);
+
+        Provider provider3 = new Provider("Bernie","Andrews","BA25","1234");
+        providerRepository.save(provider3);
 
         Admin admin = new Admin("Freya","Jules","FJ25","1234");
         adminRepository.save(admin);
 
-        Location location = new Location("Big Building","35 Big Road","123456789","BigBuilding@Gmail.com");
-        locationRepository.save(location);
+        Admin admin2 = new Admin("Jessica","Mathews","JM25","1234");
+        adminRepository.save(admin2);
+
+        Admin admin3 = new Admin("Alfred","Doyle","AD25","1234");
+        adminRepository.save(admin3);
 
         Client client = new Client("John","Smith","JS25","1234");
         clientRepository.save(client);
 
-        Appointment appointment1 =new Appointment(dave,"massage","19:00","18:00");
+        Client client2 = new Client("Mandy","Mendoza","MM25","1234");
+        clientRepository.save(client2);
+
+        Client client3 = new Client("Sally","Simpleton","SS25","1234");
+        clientRepository.save(client3);
+
+
+
+        Location location = new Location("Big Building","35 Big Road","123456789","BigBuilding@Gmail.com");
+        locationRepository.save(location);
+
+        Room room = new Room("Room 1", 3, location);
+        roomRepository.save(room);
+        Room room2 = new Room("Room 2", 3, location);
+        roomRepository.save(room2);
+        Room room3 = new Room("Room 3", 3, location);
+        roomRepository.save(room3);
+        location.addRoom(room);
+        location.addRoom(room2);
+        location.addRoom(room3);
+        locationRepository.save(location);
+
+        Appointment appointment1 = new Appointment(client, provider,"massage","19:00","18:00");
         appointmentRepository.save(appointment1);
 
-        Appointment appointment2 = new Appointment(dave,"Dentist","2:00","3:00");
+        Appointment appointment2 = new Appointment(client, provider2,"Dentist","2:00","3:00");
         appointmentRepository.save(appointment2);
 
 

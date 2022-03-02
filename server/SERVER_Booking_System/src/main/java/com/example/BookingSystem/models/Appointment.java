@@ -33,7 +33,8 @@ public class Appointment {
     @Column(name="endTime")
     private String endTime;
 
-    public Appointment(Provider provider, String type, String startTime, String endTime) {
+    public Appointment(Client client, Provider provider, String type, String startTime, String endTime) {
+        this.client = client;
         this.provider = provider;
         this.type = type;
         this.startTime = startTime;
@@ -45,6 +46,14 @@ public class Appointment {
 
     public Long getId() {
         return id;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public void setId(Long id) {
