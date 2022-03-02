@@ -1,6 +1,7 @@
 package com.example.BookingSystem.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -29,11 +30,25 @@ public class Provider {
     @OneToMany(mappedBy = "provider",fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
-    @JsonIgnoreProperties(value="provider")
-    @OneToMany(mappedBy = "provider",fetch = FetchType.LAZY)
-    private List<Location> locations;
 
-    
+
+    @ManyToMany
+    @JsonIgnoreProperties({"locations"})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "locations_providers",
+            joinColumns = { @JoinColumn(
+                    name = "provider_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "location_id",
+                    nullable = false,
+                    updatable = false)
+            }
+    )
+    private List<Location> locations;
 
 
     public Provider(String firstName, String lastName, String userName, String password) {
@@ -42,7 +57,7 @@ public class Provider {
         this.userName = userName;
         this.password = password;
         this.appointments = new ArrayList<>();
-        this.locations = new ArrayList<>();
+        this.locations =new ArrayList<>();
     }
 
     public Provider(){
@@ -101,5 +116,9 @@ public class Provider {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public void addLocation(Location location){
+        this.locations.add(location);
     }
 }

@@ -7,6 +7,7 @@ public class Room extends Workspace{
         super(name);
         this.capacity=capacity;
     }
+
     public Room() {
     }
 

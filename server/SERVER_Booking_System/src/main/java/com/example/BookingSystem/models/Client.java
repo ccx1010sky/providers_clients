@@ -25,8 +25,8 @@ public class Client {
     @Column(name="password")
     private String password;
 
-    @JsonIgnoreProperties(value="provider")
-    @OneToMany(mappedBy = "provider",fetch = FetchType.LAZY)
+    @JsonIgnoreProperties({"client"})
+    @OneToMany(mappedBy = "client",fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
     public Client(){

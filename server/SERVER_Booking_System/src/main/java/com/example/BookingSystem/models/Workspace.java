@@ -1,15 +1,21 @@
 package com.example.BookingSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 
 @MappedSuperclass
 abstract public class Workspace {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name="name")
     private String name;
+
+
 
     public Workspace(String name) {
         this.name = name;

@@ -1,17 +1,21 @@
 package com.example.BookingSystem.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
 @Table(name= "locations")
 public class Location {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
+
     @Column(name="name")
     private String name;
 
@@ -28,15 +32,31 @@ public class Location {
     @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
     private List<Workspace> workspaces;
 
-
-
-
+    @ManyToMany
+    @JsonIgnoreProperties({"locations"})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "locations_providers",
+            joinColumns = { @JoinColumn(
+                    name = "location_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "provider_id",
+                    nullable = false,
+                    updatable = false)
+            }
+            )
+    private List<Provider> providers;
 
     public Location(String name, String address, String phoneNumber, String email) {
         this.name = name;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.workspaces =new ArrayList<>();
+        this.providers =new ArrayList<>();
     }
 
     public Location(){
@@ -80,5 +100,25 @@ public class Location {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public void addProvider(Provider provider){
+        this.providers.add(provider);
+    }
+
+    public List<Workspace> getWorkspaces() {
+        return workspaces;
+    }
+
+    public void setWorkspaces(List<Workspace> workspaces) {
+        this.workspaces = workspaces;
+    }
+
+    public List<Provider> getProviders() {
+        return providers;
+    }
+
+    public void setProviders(List<Provider> providers) {
+        this.providers = providers;
     }
 }
