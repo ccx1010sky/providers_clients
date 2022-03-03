@@ -28,7 +28,7 @@ public class Location {
     private String email;
 
     @JsonIgnoreProperties(value="location")
-    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Room> rooms;
 
 //    @JsonIgnoreProperties(value="location")
