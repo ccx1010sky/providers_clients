@@ -1,9 +1,34 @@
-import React from 'react'
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import {
+  getAppointments,
+  getClients,
+  getLocations,
+  getProviders,
+  getRooms,
+} from "../service";
 
 const HomePage = () => {
-  return (
-    <div>HomePage</div>
-  )
-}
+  const [appointments, setAppointments] = useState([]);
+  const [providers, setProviders] = useState([]);
+  const [clients, setClients] = useState([]);
+  const [locations, setLocations] = useState([]);
+  const [rooms, setRooms] = useState([]);
 
-export default HomePage
+  useEffect(() => {
+    getAppointments().then((data) => setAppointments(data));
+
+    getProviders().then((data) => setProviders(data));
+
+    getClients().then((data) => setClients(data));
+
+    getLocations().then((data) => setLocations(data));
+
+    getRooms().then((data) => setRooms(data));
+  }, []);
+
+  return <div>{console.log(appointments)}</div>;
+};
+
+export default HomePage;
