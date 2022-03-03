@@ -28,12 +28,12 @@ public class Location {
     private String email;
 
     @JsonIgnoreProperties(value="location")
-    @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
     private List<Room> workspaces;
 
-    @JsonIgnoreProperties(value="location")
-    @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
-    private List<Appointment> appointments;
+//    @JsonIgnoreProperties(value="location")
+//    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
+//    private List<Appointment> appointments;
 
     @ManyToMany
     @JsonIgnoreProperties({"locations"})
@@ -59,7 +59,7 @@ public class Location {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.workspaces =new ArrayList<>();
-        this.providers =new ArrayList<>();
+        this.providers = new ArrayList<>();
     }
 
     public Location(){

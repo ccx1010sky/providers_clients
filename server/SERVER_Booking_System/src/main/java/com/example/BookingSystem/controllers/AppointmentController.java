@@ -21,7 +21,7 @@ public class AppointmentController {
     }
 
     //SHOW
-    @GetMapping("/appoinments/{id}")
+    @GetMapping("/appointments/{id}")
     public ResponseEntity getAppointment(@PathVariable Long id){
         return new ResponseEntity<>(appointmentRepository.findById(id), HttpStatus.OK);
     }
@@ -39,7 +39,7 @@ public class AppointmentController {
         Appointment appointmentToUpdate = appointmentRepository.findById(id).get();
         appointmentToUpdate.setClient(appointment.getClient());
         appointmentToUpdate.setProvider(appointment.getProvider());
-        appointmentToUpdate.setLocation(appointment.getLocation());
+        appointmentToUpdate.setRoom(appointment.getRoom());
         appointmentToUpdate.setType(appointment.getType());
         appointmentToUpdate.setStartTime(appointment.getStartTime());
         appointmentToUpdate.setEndTime(appointment.getEndTime());

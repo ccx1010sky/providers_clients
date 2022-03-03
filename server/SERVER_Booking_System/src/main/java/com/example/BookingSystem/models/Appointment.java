@@ -37,13 +37,14 @@ public class Appointment {
     //@JsonIgnoreProperties({"appointments"})
     @JsonBackReference
     @ManyToOne
-    @JoinColumn(name = "location_id", nullable = false)
-    private Location location;
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
 
-    public Appointment(Client client, Provider provider, Location location, String type, String startTime, String endTime) {
+
+    public Appointment(Client client, Provider provider, Room room, String type, String startTime, String endTime) {
         this.client = client;
         this.provider = provider;
-        this.location = location;
+        this.room = room;
         this.type = type;
         this.startTime = startTime;
         this.endTime = endTime;
@@ -52,12 +53,12 @@ public class Appointment {
     public Appointment() {
     }
 
-    public Location getLocation() {
-        return location;
+    public Room getRoom() {
+        return room;
     }
 
-    public void setLocation(Location location) {
-        this.location = location;
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Long getId() {

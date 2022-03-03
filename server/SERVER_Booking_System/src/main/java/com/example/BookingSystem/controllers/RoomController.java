@@ -5,8 +5,7 @@ import com.example.BookingSystem.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -21,10 +20,17 @@ public class RoomController {
     }
 
     //SHOW
-
+    @GetMapping("/rooms/{id}")
+    public ResponseEntity getRoom(@PathVariable Long id){
+        return new ResponseEntity<>(roomRepository.getById(id), HttpStatus.OK);
+    }
 
     // CREATE
-
+    @PostMapping("/rooms")
+    public ResponseEntity<Room> createRoom(@RequestBody Room room){
+        roomRepository.save(room);
+        return new ResponseEntity<>(room, HttpStatus.CREATED);
+    }
 
     // UPDATE
 

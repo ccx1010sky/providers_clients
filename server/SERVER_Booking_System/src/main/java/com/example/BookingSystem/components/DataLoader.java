@@ -63,9 +63,9 @@ public class DataLoader implements ApplicationRunner {
         Room room3 = new Room("Room 3", 3, location);
         roomRepository.save(room3);
 
-        Appointment appointment1 = new Appointment(client, provider, location, "massage","19:00","18:00");
+        Appointment appointment1 = new Appointment(client, provider, room2,  "massage","19:00","18:00");
         appointmentRepository.save(appointment1);
-        Appointment appointment2 = new Appointment(client, provider2, location,"Dentist","2:00","3:00");
+        Appointment appointment2 = new Appointment(client, provider2, room, "Dentist","2:00","3:00");
         appointmentRepository.save(appointment2);
 
         // Add rooms available for use to the locations
@@ -87,6 +87,13 @@ public class DataLoader implements ApplicationRunner {
         provider3.addLocation(location2);
         provider3.addLocation(location3);
         providerRepository.save(provider3);
+
+        // Add appointments to rooms
+//        room2.addAppointment(appointment1);
+//        room2.addAppointment(appointment2);
+//        roomRepository.save(room2);
+//        room.addAppointment(appointment1);
+//        roomRepository.save(room);
 
 
 
