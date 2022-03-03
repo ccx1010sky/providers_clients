@@ -15,26 +15,26 @@ public class AppointmentController {
     AppointmentRepository appointmentRepository;
 
     // INDEX
-    @GetMapping("/appointments")
+    @GetMapping(value = "/appointments")
     public ResponseEntity<List<Appointment>> getAllAppointments(){
         return new ResponseEntity<>(appointmentRepository.findAll(), HttpStatus.OK);
     }
 
     //SHOW
-    @GetMapping("/appointments/{id}")
+    @GetMapping(value = "/appointments/{id}")
     public ResponseEntity getAppointment(@PathVariable Long id){
         return new ResponseEntity<>(appointmentRepository.findById(id), HttpStatus.OK);
     }
 
     // CREATE
-    @PostMapping("/appointmnets")
+    @PostMapping(value = "/appointments")
     public ResponseEntity<Appointment> createAppointment(@RequestBody Appointment appointment){
         appointmentRepository.save(appointment);
         return new ResponseEntity<>(appointment, HttpStatus.CREATED);
     }
 
     // UPDATE
-    @PutMapping("appointments/{id}")
+    @PutMapping(value = "/appointments/{id}")
     public ResponseEntity<Appointment> updateAppointment(@RequestBody Appointment appointment, @PathVariable Long id){
         Appointment appointmentToUpdate = appointmentRepository.findById(id).get();
         appointmentToUpdate.setClient(appointment.getClient());
@@ -48,7 +48,7 @@ public class AppointmentController {
     }
 
     // DESTROY
-    @DeleteMapping("/appointments/{id}")
+    @DeleteMapping(value = "/appointments/{id}")
     public ResponseEntity<Long> destroyAppointment(@PathVariable Long id){
         appointmentRepository.deleteById(id);
         return new ResponseEntity<>(id, HttpStatus.OK);

@@ -18,10 +18,11 @@ public class Room {
 
     @Column(name = "name")
     private String name;
+
     @Column(name = "capacity")
     private int capacity;
 
-    //@JsonIgnoreProperties({"rooms"})
+//    @JsonIgnoreProperties({"rooms"})
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)

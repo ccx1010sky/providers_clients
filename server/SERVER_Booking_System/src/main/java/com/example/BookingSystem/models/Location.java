@@ -29,7 +29,7 @@ public class Location {
 
     @JsonIgnoreProperties(value="location")
     @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-    private List<Room> workspaces;
+    private List<Room> rooms;
 
 //    @JsonIgnoreProperties(value="location")
 //    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
@@ -58,11 +58,19 @@ public class Location {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.workspaces =new ArrayList<>();
+        this.rooms =new ArrayList<>();
         this.providers = new ArrayList<>();
     }
 
     public Location(){
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 
     public Long getId() {
@@ -109,14 +117,6 @@ public class Location {
         this.providers.add(provider);
     }
 
-    public List<Room> getWorkspaces() {
-        return workspaces;
-    }
-
-    public void setWorkspaces(List<Room> workspaces) {
-        this.workspaces = workspaces;
-    }
-
     public List<Provider> getProviders() {
         return providers;
     }
@@ -126,6 +126,6 @@ public class Location {
     }
 
     public void addRoom(Room room){
-        this.workspaces.add(room);
+        this.rooms.add(room);
     }
 }

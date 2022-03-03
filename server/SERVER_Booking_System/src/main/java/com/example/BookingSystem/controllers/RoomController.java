@@ -14,19 +14,19 @@ public class RoomController {
     @Autowired
     RoomRepository roomRepository;
 
-    @GetMapping("/rooms")
+    @GetMapping(value = "/rooms")
     public ResponseEntity<List<Room>> getAllRooms(){
         return new ResponseEntity<>(roomRepository.findAll(), HttpStatus.OK);
     }
 
     //SHOW
-    @GetMapping("/rooms/{id}")
+    @GetMapping(value = "/rooms/{id}")
     public ResponseEntity getRoom(@PathVariable Long id){
-        return new ResponseEntity<>(roomRepository.getById(id), HttpStatus.OK);
+        return new ResponseEntity<>(roomRepository.findById(id), HttpStatus.OK);
     }
 
     // CREATE
-    @PostMapping("/rooms")
+    @PostMapping(value = "/rooms")
     public ResponseEntity<Room> createRoom(@RequestBody Room room){
         roomRepository.save(room);
         return new ResponseEntity<>(room, HttpStatus.CREATED);

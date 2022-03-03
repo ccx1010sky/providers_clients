@@ -34,8 +34,8 @@ public class Appointment {
     @Column(name="endTime")
     private String endTime;
 
-    //@JsonIgnoreProperties({"appointments"})
-    @JsonBackReference
+    @JsonIgnoreProperties({"appointments"})
+    //@JsonBackReference
     @ManyToOne
     @JoinColumn(name = "room_id", nullable = false)
     private Room room;
