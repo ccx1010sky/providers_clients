@@ -33,10 +33,23 @@ public class RoomController {
     }
 
     // UPDATE
-
+    @PutMapping(value = "/rooms/{id}")
+    public ResponseEntity<Room> updateRoom(@RequestBody Room room, @PathVariable Long id){
+        Room roomToUpdate = roomRepository.findById(id).get();
+        roomToUpdate.setName(room.getName());
+        roomToUpdate.setCapacity(room.getCapacity());
+        roomToUpdate.setLocation(room.getLocation());
+        roomToUpdate.setAppointments(room.getAppointments());
+        roomRepository.save(roomToUpdate);
+        return new ResponseEntity<>(roomToUpdate, HttpStatus.OK);
+    }
 
     // DESTROY
-
+    @DeleteMapping(value = "/rooms/{id}")
+    public ResponseEntity<Long> destroyRoom(@PathVariable Long id){
+        roomRepository.deleteById(id);
+        return new ResponseEntity<>(id, HttpStatus.OK);
+    }
 
 
     // Custom Routes
