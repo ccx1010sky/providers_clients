@@ -1,6 +1,8 @@
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import "../static/css/homepage.css";
+
 import {
   getAppointments,
   getClients,
@@ -28,7 +30,11 @@ const HomePage = () => {
     getRooms().then((data) => setRooms(data));
   }, []);
 
-  return <div>{console.log(appointments)}</div>;
+  return (
+  <div className="homepage">homepage
+
+  </div>
+  )
 };
 
 export default HomePage;
