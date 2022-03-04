@@ -1,7 +1,5 @@
 .header {
-  width: 100vw;
-  height: 30wh;
-  background-color: rgb(204, 175, 175);
+  background-color: rgb(230, 213, 213);
 }
 
 .logo{
@@ -18,7 +16,8 @@ nav{
 .nav-links{
     display: flex;
     justify-content: flex-end;
-  list-style: none;
+    padding-top:10px;
+    list-style: none;
 
 }
 
