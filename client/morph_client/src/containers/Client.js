@@ -9,6 +9,9 @@
 // export default Client
 
 import * as React from "react";
+import ReactDOM from "react-dom";
+
+
 import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { SampleBase } from "../sample-base";
@@ -188,7 +191,7 @@ export default class Client extends SampleBase {
   }
 }
 
-// render(<Client />, document.getElementById('root'));
+// ReactDOM.render(<Client />, document.getElementById('root'));
 
 
 

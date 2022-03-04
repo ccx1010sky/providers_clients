@@ -47,7 +47,7 @@
  /* end of header-section styles */
 
  /* content area styles */
- #maintext .main-content {
+ #maintext.main-content {
      height: 100vh;
      z-index: 1000;
  }
