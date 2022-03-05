@@ -42,11 +42,11 @@ public class DataLoader implements ApplicationRunner {
         Admin admin3 = new Admin("Alfred","Doyle","AD25","1234");
         adminRepository.save(admin3);
 
-        Client client = new Client("John","Smith","JS25","1234");
+        Client client = new Client("John","Smith","04/12/1975", "07957234153", "john@johnmail.com");
         clientRepository.save(client);
-        Client client2 = new Client("Mandy","Mendoza","MM25","1234");
+        Client client2 = new Client("Mandy","Mendoza","12/02/1999", "07878567435", "manmendo@gmail.com");
         clientRepository.save(client2);
-        Client client3 = new Client("Sally","Simpleton","SS25","1234");
+        Client client3 = new Client("Sally","Simpleton","09/07/2001", "07834567234", "saldip@yahoo.com");
         clientRepository.save(client3);
 
         Location location = new Location("Big Building","35 Big Road","123456789","BigBuilding@Gmail.com");
