@@ -24,68 +24,47 @@ export default class Client extends SampleBase {
     this.mediaQuery = "(min-width: 600px)";
     this.menuItems = [
       {
-        text: "Overview",
+        text: "Diary",
         iconCss: "icon-globe icon",
         items: [
-          { text: "All Data" },
-          { text: "Category2" },
-          { text: "Category3" },
+          // { text: "All Data" },
+          // { text: "Category2" },
+          // { text: "Category3" },
         ],
       },
       {
-        text: "Notification",
+        text: "Appointment",
         iconCss: "icon-bell-alt icon",
-        items: [{ text: "Message" }, { text: "Facebook" }, { text: "Twitter" }],
+        items: [
+          // { text: "Message" }, { text: "Facebook" }, { text: "Twitter" }
+        ],
       },
       {
-        text: "Comments",
+        text: "Client",
         iconCss: "icon-comment-inv-alt2 icon",
         items: [
-          { text: "Category1" },
-          { text: "Category2" },
-          { text: "Category3" },
+          // { text: "Category1" },
+          // { text: "Category2" },
+          // { text: "Category3" },
         ],
       },
       {
-        text: "Bookmarks",
+        text: "Location",
         iconCss: "icon-bookmark icon",
         items: [
-          { text: "All Comments" },
-          { text: "Add Comments" },
-          { text: "Delete Comments" },
+          // { text: "All Comments" },
+          // { text: "Add Comments" },
+          // { text: "Delete Comments" },
         ],
       },
       {
-        text: "Images",
+        text: "Team",
         iconCss: "icon-picture icon",
         items: [
-          { text: "Add Name" },
-          { text: "Add Mobile Number" },
-          { text: "Add Imaage" },
+          // { text: "Add Name" },
+          // { text: "Add Mobile Number" },
+          // { text: "Add Imaage" },
         ],
-      },
-      {
-        text: "Users ",
-        iconCss: "icon-user icon",
-        items: [
-          { text: "Mobile1" },
-          { text: "Mobile2" },
-          { text: "Telephone" },
-        ],
-      },
-      {
-        text: "Settings",
-        iconCss: "icon-eye icon",
-        items: [
-          { text: "Change Profile" },
-          { text: "Add Name" },
-          { text: "Add Details" },
-        ],
-      },
-      {
-        text: "Info",
-        iconCss: "icon-tag icon",
-        items: [{ text: "Facebook" }, { text: "Mobile" }],
       },
     ];
     this.AccountMenuItem = [
@@ -94,7 +73,7 @@ export default class Client extends SampleBase {
         items: [{ text: "Profile" }, { text: "Sign out" }],
       },
     ];
-    this.enableDock = true;
+    this.enableDock = false;
     this.dockSize = "52px";
     this.width = "220px";
     this.target = ".main-content";
@@ -124,11 +103,11 @@ export default class Client extends SampleBase {
                   className="icon-menu icon list"
                   onClick={this.openClick.bind(this)}
                 ></li>
-                <input
+                {/* <input
                   type="text"
                   placeholder="Search..."
                   className="search-icon list"
-                ></input>
+                ></input> */}
                 <li className="right-header list">
                   <div className="horizontal-menu">
                     <MenuComponent
@@ -137,8 +116,8 @@ export default class Client extends SampleBase {
                     ></MenuComponent>
                   </div>
                 </li>
-                <li className="right-header list support">Support</li>
-                <li className="right-header list tour">Tour</li>
+                {/* <li className="right-header list support">Support</li>
+                <li className="right-header list tour">Tour</li> */}
               </ul>
             </div>
             <SidebarComponent
