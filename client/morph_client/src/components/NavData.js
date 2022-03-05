@@ -5,14 +5,22 @@ export const NavData = [
   //   icon: "logo",
   //   cName: "nav-text",
   // },
+
+  // {
+  //   onClick: (navigate) => navigate("/Login"),
+  //   icon: "Login",
+  //   cName: "nav-text",
+  // },
+
+  // {
+  //   onClick: (navigate) => navigate("/signup"),
+  //   icon: "Signup",
+  //   cName: "nav-text",
+  // },
+  
   {
-    onClick: (navigate) => navigate("/Login"),
-    icon: "Login",
-    cName: "nav-text",
-  },
-  {
-    onClick: (navigate) => navigate("/signup"),
-    icon: "Signup",
+    onClick: (navigate) => navigate("/client"),
+    icon: "Client",
     cName: "nav-text",
   },
   {
@@ -20,16 +28,12 @@ export const NavData = [
     icon: "Provider",
     cName: "nav-text",
   },
-  {
-    onClick: (navigate) => navigate("/client"),
-    icon: "Client",
-    cName: "nav-text",
-  },
-  {
-    onClick: (navigate) => navigate("/Booking"),
-    icon: "Booking",
-    cName: "nav-text",
-  },
+
+  // {
+  //   onClick: (navigate) => navigate("/Booking"),
+  //   icon: "Booking",
+  //   cName: "nav-text",
+  // },
 ];
 
 
