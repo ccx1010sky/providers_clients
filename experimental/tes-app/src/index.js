@@ -152,6 +152,6 @@ render(
   
     <SidebarWithMenu />,
   
-  document.getElementById('root')
+  document.getElementById('sample')
 );
 
