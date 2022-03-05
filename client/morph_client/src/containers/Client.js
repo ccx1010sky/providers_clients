@@ -33,37 +33,19 @@ export default class Client extends SampleBase {
         ],
       },
       {
-        text: "Appointment",
+        text: "Appointments",
         iconCss: "icon-bell-alt icon",
         items: [
           // { text: "Message" }, { text: "Facebook" }, { text: "Twitter" }
         ],
       },
       {
-        text: "Client",
+        text: "Account",
         iconCss: "icon-comment-inv-alt2 icon",
         items: [
           // { text: "Category1" },
           // { text: "Category2" },
           // { text: "Category3" },
-        ],
-      },
-      {
-        text: "Location",
-        iconCss: "icon-bookmark icon",
-        items: [
-          // { text: "All Comments" },
-          // { text: "Add Comments" },
-          // { text: "Delete Comments" },
-        ],
-      },
-      {
-        text: "Team",
-        iconCss: "icon-picture icon",
-        items: [
-          // { text: "Add Name" },
-          // { text: "Add Mobile Number" },
-          // { text: "Add Imaage" },
         ],
       },
     ];

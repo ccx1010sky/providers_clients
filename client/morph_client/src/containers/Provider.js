@@ -31,14 +31,14 @@ export default class Client extends SampleBase {
         ],
       },
       {
-        text: "Appointment",
+        text: "Appointments",
         iconCss: "icon-bell-alt icon",
         items: [
           // { text: "Message" }, { text: "Facebook" }, { text: "Twitter" }
         ],
       },
       {
-        text: "Client",
+        text: "Clients",
         iconCss: "icon-comment-inv-alt2 icon",
         items: [
           // { text: "Category1" },
@@ -47,7 +47,7 @@ export default class Client extends SampleBase {
         ],
       },
       {
-        text: "Location",
+        text: "Locations",
         iconCss: "icon-bookmark icon",
         items: [
           // { text: "All Comments" },
@@ -56,7 +56,7 @@ export default class Client extends SampleBase {
         ],
       },
       {
-        text: "Team",
+        text: "Teams",
         iconCss: "icon-picture icon",
         items: [
           // { text: "Add Name" },
