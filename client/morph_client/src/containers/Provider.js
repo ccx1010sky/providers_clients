@@ -15,8 +15,29 @@ import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { SampleBase } from "../sample-base";
 import "./sidebar-menu.css";
+import Appointments from "../components/Appointments";
+import Diary from "../components/Diary";
+import Dashboard from "../components/Dashboard";
+import Teams from "../components/Teams";
+import Clients from "../components/Clients";
 
 export default class Client extends SampleBase {
+
+  state = {
+    page:"Dashboard"
+  }
+  
+  showTargetPage = () =>{
+    
+    if ((this.state.page) ==="Diary"){return <Diary/>}
+    if ((this.state.page)==="Appointments"){return <Appointments/>} 
+    if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
+    if ((this.state.page)==="Clients"){return  <Clients/>}
+    if ((this.state.page)==="Teams"){return  <Teams/>}
+    if ((this.state.page)==="Locations"){return  <Dashboard/>}
+    
+    
+  }
   constructor() {
     super(...arguments);
     this.mediaQuery = "(min-width: 600px)";
@@ -130,6 +151,7 @@ export default class Client extends SampleBase {
               <div className="main-menu">
                 <p className="main-menu-header">MAIN</p>
                 <MenuComponent
+                     onClick={this.menuClick.bind(this)}
                   items={this.menuItems}
                   orientation="Vertical"
                   cssClass="dock-menu"
@@ -144,7 +166,8 @@ export default class Client extends SampleBase {
             </SidebarComponent>
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
-                <div> Responsive Sidebar with Menu</div>
+              
+                <div> {this.showTargetPage()}</div>
               </div>
             </div>
           </div>
@@ -165,6 +188,13 @@ export default class Client extends SampleBase {
   //open the sidebar
   openClick() {
     this.sidebarobj.toggle();
+  }
+  menuClick(event){
+    
+    this.setState({
+      
+      page:event.target.ariaLabel 
+     })
   }
 }
 

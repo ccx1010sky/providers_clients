@@ -8,6 +8,7 @@ import Client from './containers/Client';
 ReactDOM.render(
   <React.StrictMode>
     <App />
+   
   </React.StrictMode>,
   document.getElementById('root')
 );

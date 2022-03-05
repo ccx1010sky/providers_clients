@@ -10,24 +10,50 @@
 
 import * as React from "react";
 import ReactDOM from "react-dom";
+import { useState } from "react";
+
 
 
 
 import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { SampleBase } from "../sample-base";
-import Appointment from "../components/Appointment";
+import Appointments from "../components/Appointments";
 import "./sidebar-menu.css";
+import Dashboard from "../components/Dashboard";
+import Diary from "../components/Diary";
+import Accounts from "../components/Accounts";
+
+
+
+
+
 
 
 export default class Client extends SampleBase {
-
+  
+  state = {
+    page:"Dashboard"
+  }
+  
+  showTargetPage = () =>{
+    
+    if((this.state.page) ==="Diary"){return <Diary/>}
+    if((this.state.page)==="Appointments"){return <Appointments/>} 
+    if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
+    if ((this.state.page)==="Accounts"){return  <Accounts/>}
+    
+    
+  }
+  
   constructor() {
+    
     super(...arguments);
     this.mediaQuery = "(min-width: 600px)";
     this.menuItems = [
-      {
-
+      
+      { 
+       
         text: "Diary",
         iconCss: "icon-globe icon",
         items: [
@@ -37,6 +63,7 @@ export default class Client extends SampleBase {
         ],
       },
       {
+       
         text: "Appointments",
         iconCss: "icon-bell-alt icon",
         items: [
@@ -44,7 +71,7 @@ export default class Client extends SampleBase {
         ],
       },
       {
-        text: "Account",
+        text: "Accounts",
         iconCss: "icon-comment-inv-alt2 icon",
         items: [
           // { text: "Category1" },
@@ -110,6 +137,7 @@ export default class Client extends SampleBase {
             </div>
 
             <SidebarComponent
+
               id="sidebar-menu"
               ref={(Sidebar) => (this.sidebarobj = Sidebar)}
               enableDock={this.enableDock}
@@ -121,10 +149,11 @@ export default class Client extends SampleBase {
               <div className="main-menu">
                 <p className="main-menu-header">MAIN</p>
                 <MenuComponent
+                  onClick={this.menuClick.bind(this)}
                   items={this.menuItems}
                   orientation="Vertical"
                   cssClass="dock-menu"
-                ></MenuComponent>
+               ></MenuComponent>
               </div>
 
               <div className="action">
@@ -138,7 +167,8 @@ export default class Client extends SampleBase {
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
 
-                <Appointment />
+                {/* {this.state ==="Appointments"?<Appointment/> :<Dashboard/>} */}
+                {this.showTargetPage()}
 
               </div>
             </div>
@@ -159,7 +189,16 @@ export default class Client extends SampleBase {
   }
   // open the sidebar
   openClick() {
+  
     this.sidebarobj.toggle();
+  }
+  
+  menuClick(event){
+    
+    this.setState({
+      
+      page:event.target.ariaLabel 
+     })
   }
 }
 

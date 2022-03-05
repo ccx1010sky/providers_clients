@@ -10,7 +10,7 @@ function App() {
     <div className='App'>
      <BrowserRouter>
        <Layout>
-         <WebRoutes />
+         <WebRoutes/>
        </Layout>
      </BrowserRouter>
     </div>
