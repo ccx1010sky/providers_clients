@@ -12,18 +12,22 @@ import * as React from "react";
 import ReactDOM from "react-dom";
 
 
+
 import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { SampleBase } from "../sample-base";
+import Appointment from "../components/Appointment";
 import "./sidebar-menu.css";
 
 
 export default class Client extends SampleBase {
+
   constructor() {
     super(...arguments);
     this.mediaQuery = "(min-width: 600px)";
     this.menuItems = [
       {
+
         text: "Diary",
         iconCss: "icon-globe icon",
         items: [
@@ -49,6 +53,7 @@ export default class Client extends SampleBase {
         ],
       },
     ];
+
     this.AccountMenuItem = [
       {
         text: "Account",
@@ -85,6 +90,7 @@ export default class Client extends SampleBase {
                   className="icon-menu icon list"
                   onClick={this.openClick.bind(this)}
                 ></li>
+
                 {/* <input
                   type="text"
                   placeholder="Search..."
@@ -102,6 +108,7 @@ export default class Client extends SampleBase {
                 <li className="right-header list tour">Tour</li> */}
               </ul>
             </div>
+
             <SidebarComponent
               id="sidebar-menu"
               ref={(Sidebar) => (this.sidebarobj = Sidebar)}
@@ -119,6 +126,7 @@ export default class Client extends SampleBase {
                   cssClass="dock-menu"
                 ></MenuComponent>
               </div>
+
               <div className="action">
                 <p className="main-menu-header">ACTION</p>
                 <button className="e-btn action-btn" id="action-button">
@@ -126,9 +134,12 @@ export default class Client extends SampleBase {
                 </button>
               </div>
             </SidebarComponent>
+
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
-                <div> Responsive Sidebar with Menu</div>
+
+                <Appointment />
+
               </div>
             </div>
           </div>
@@ -136,7 +147,7 @@ export default class Client extends SampleBase {
       </div>
     );
   }
-  //open newTab
+  // open newTab
   newTabClick() {
     let URL = window.location.href.replace(window.location.search, "");
     document
@@ -146,7 +157,7 @@ export default class Client extends SampleBase {
         URL.split("#")[0] + "sidebar/sidebar-menu/index.html"
       );
   }
-  //open the sidebar
+  // open the sidebar
   openClick() {
     this.sidebarobj.toggle();
   }
