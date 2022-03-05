@@ -21,6 +21,7 @@ Suggested policy for git commits
 	When making branches, choose one of:
 	
 	feature - new functionality that is being added.
+	refactor - reorganising, tidying or improving working code.
 	bugfix - working on existing features bugs.
 	experimental - anything goes, open playground that may or may not get merged back to develop.
 	WIP - work in progress, may take some time.
