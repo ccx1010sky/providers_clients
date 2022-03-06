@@ -32,9 +32,13 @@ Suggested policy for git commits
 	
 	1. Develop a feature of the server to allow full CRUD funtion:
 	    - branch from develop and name the new branch:
-		develop-feature-server-CRUD-function
+		feature-server-CRUD-function
 		
 	2. Experiment with new technologies for secure login:
 	   - branch from develop and name branch:
-	   	develop-experimental-secure-login
+	   	experimental-secure-login
+		
+	3. Bug fix a feature
+	   - branch from develop and name the new branch:
+	   	bug-fix-<description of bug being fixed>
 	
