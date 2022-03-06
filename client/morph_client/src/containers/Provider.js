@@ -1,12 +1,3 @@
-// import React from 'react'
-
-// const Client = () => {
-//   return (
-//     <div>Client</div>
-//   )
-// }
-
-// export default Client
 
 import * as React from "react";
 import ReactDOM from "react-dom";
@@ -21,16 +12,20 @@ import Dashboard from "../components/Dashboard";
 import Teams from "../components/Teams";
 import Clients from "../components/Clients";
 
+
+
 export default class Client extends SampleBase {
+  
 
   state = {
-    page:"Dashboard"
+    page:"Dashboard",
+    hello:"joy"
   }
   
-  showTargetPage = () =>{
+  showTargetPage = (providerData) =>{
     
-    if ((this.state.page) ==="Diary"){return <Diary/>}
-    if ((this.state.page)==="Appointments"){return <Appointments/>} 
+    if ((this.state.page)==="Diary"){return <Diary/>}
+    if ((this.state.page)==="Appointments"){return <Appointments providerData={this.props.providerData}/>} 
     if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
     if ((this.state.page)==="Clients"){return  <Clients/>}
     if ((this.state.page)==="Teams"){return  <Teams/>}
@@ -166,7 +161,7 @@ export default class Client extends SampleBase {
             </SidebarComponent>
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
-              
+               
                 <div> {this.showTargetPage()}</div>
               </div>
             </div>

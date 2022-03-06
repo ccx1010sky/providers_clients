@@ -12,23 +12,24 @@ import {
 } from "../service";
 
 const HomePage = () => {
-  const [appointments, setAppointments] = useState([]);
-  const [providers, setProviders] = useState([]);
-  const [clients, setClients] = useState([]);
-  const [locations, setLocations] = useState([]);
-  const [rooms, setRooms] = useState([]);
+  
+  // const [appointments, setAppointments] = useState([]);
+  // const [providers, setProviders] = useState([]);
+  // const [clients, setClients] = useState([]);
+  // const [locations, setLocations] = useState([]);
+  // const [rooms, setRooms] = useState([]);
 
-  useEffect(() => {
-    getAppointments().then((data) => setAppointments(data));
+  // useEffect(() => {
+  //   getAppointments().then((data) => setAppointments(data));
 
-    getProviders().then((data) => setProviders(data));
+  //   getProviders().then((data) => console.log(data));
 
-    getClients().then((data) => setClients(data));
+  //   getClients().then((data) => setClients(data));
 
-    getLocations().then((data) => setLocations(data));
+  //   getLocations().then((data) => setLocations(data));
 
-    getRooms().then((data) => setRooms(data));
-  }, []);
+  //   getRooms().then((data) => setRooms(data));
+  // }, []);
 
   return (
   <div className="homepage">homepage
