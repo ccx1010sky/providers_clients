@@ -128,4 +128,5 @@ public class Location {
     public void addRoom(Room room){
         this.rooms.add(room);
     }
+
 }

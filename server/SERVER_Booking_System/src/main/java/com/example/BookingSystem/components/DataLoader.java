@@ -80,21 +80,16 @@ public class DataLoader implements ApplicationRunner {
         provider.addLocation(location3);
         providerRepository.save(provider);
         provider2.addLocation(location);
-        provider2.addLocation(location2);
         provider2.addLocation(location3);
         providerRepository.save(provider2);
         provider3.addLocation(location);
-        provider3.addLocation(location2);
-        provider3.addLocation(location3);
         providerRepository.save(provider3);
 
-        // Add appointments to rooms
-//        room2.addAppointment(appointment1);
-//        room2.addAppointment(appointment2);
-//        roomRepository.save(room2);
-//        room.addAppointment(appointment1);
-//        roomRepository.save(room);
-
+        // Give locations providers that are available at that location
+        // Should give same result as adding locations to providers
+        location2.addProvider(provider3);
+        location2.addProvider(provider2);
+        locationRepository.save(location2);
 
 
 
