@@ -39,6 +39,7 @@ public class AppointmentController {
         Appointment appointmentToUpdate = appointmentRepository.findById(id).get();
         appointmentToUpdate.setClient(appointment.getClient());
         appointmentToUpdate.setProvider(appointment.getProvider());
+        appointmentToUpdate.setLocation(appointment.getLocation());
         appointmentToUpdate.setRoom(appointment.getRoom());
         appointmentToUpdate.setType(appointment.getType());
         appointmentToUpdate.setStartTime(appointment.getStartTime());

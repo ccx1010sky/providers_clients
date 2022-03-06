@@ -42,8 +42,8 @@ public class AdminController {
         Admin adminToUpdate = adminRepository.findById(id).get();
         adminToUpdate.setFirstName(admin.getFirstName());
         adminToUpdate.setLastName(admin.getLastName());
-        adminToUpdate.setUserName(admin.getUserName());
-        adminToUpdate.setPassword(admin.getPassword());
+        adminToUpdate.setRole(admin.getRole());
+        adminToUpdate.setLocation(admin.getLocation());
         adminRepository.save(adminToUpdate);
         return new ResponseEntity<>(adminToUpdate, HttpStatus.OK);
     }

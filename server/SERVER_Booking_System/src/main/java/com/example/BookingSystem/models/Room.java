@@ -22,8 +22,7 @@ public class Room {
     @Column(name = "capacity")
     private int capacity;
 
-    @JsonIgnoreProperties(value = {"rooms", "providers"}, allowSetters = true)
-    //@JsonBackReference
+    @JsonIgnoreProperties(value = {"rooms", "providers"})
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;

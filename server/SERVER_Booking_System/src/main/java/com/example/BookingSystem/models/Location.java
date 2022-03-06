@@ -31,9 +31,13 @@ public class Location {
     @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Room> rooms;
 
-//    @JsonIgnoreProperties(value="location")
-//    @OneToMany(mappedBy = "location", fetch = FetchType.LAZY)
-//    private List<Appointment> appointments;
+    @JsonIgnoreProperties(value="location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Appointment> appointments;
+
+    @JsonIgnoreProperties(value="location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Admin> admins;
 
     @ManyToMany
     @JsonIgnoreProperties({"locations"})
@@ -58,11 +62,29 @@ public class Location {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.rooms =new ArrayList<>();
+        this.rooms = new ArrayList<>();
+        this.admins = new ArrayList<>();
         this.providers = new ArrayList<>();
+        this.appointments = new ArrayList<>();
     }
 
     public Location(){
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public List<Admin> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(List<Admin> admins) {
+        this.admins = admins;
     }
 
     public List<Room> getRooms() {
@@ -128,5 +150,7 @@ public class Location {
     public void addRoom(Room room){
         this.rooms.add(room);
     }
+
+    public void addAdmin(Admin admin) {this.admins.add(admin); }
 
 }

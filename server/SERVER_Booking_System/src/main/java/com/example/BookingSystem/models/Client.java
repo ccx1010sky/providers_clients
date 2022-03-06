@@ -29,8 +29,7 @@ public class Client {
     @Column(name = "email")
     private String email;
 
-    //@JsonIgnoreProperties({"client"})
-    @JsonBackReference
+    @JsonIgnoreProperties({"client"})
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 

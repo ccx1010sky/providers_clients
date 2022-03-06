@@ -21,11 +21,11 @@ public class Provider {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="user_name")
-    private String userName;
+    @Column(name="service_type")
+    private String serviceType;
 
-    @Column(name = "password")
-    private String password;
+    @Column(name = "role")
+    private String role;
 
     @JsonIgnoreProperties(value="provider")
     @OneToMany(mappedBy = "provider",fetch = FetchType.LAZY)
