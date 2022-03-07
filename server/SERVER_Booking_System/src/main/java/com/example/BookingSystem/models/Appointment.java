@@ -62,7 +62,6 @@ public class Appointment {
 
     public Appointment() {
     }
-
     public String getDate() {
         return date;
     }
