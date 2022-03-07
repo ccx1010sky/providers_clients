@@ -67,6 +67,10 @@ public class DataLoader implements ApplicationRunner {
         appointmentRepository.save(appointment1);
         Appointment appointment2 = new Appointment(client, provider2, location, room, "Dentist","2:00","3:00");
         appointmentRepository.save(appointment2);
+        Appointment appointment3 = new Appointment(client, provider, location, room2,  "Physio","20:00","21:00");
+        appointmentRepository.save(appointment3);
+        Appointment appointment4 = new Appointment(client2, provider, location, room2,  "Physio","22:00","23:00");
+        appointmentRepository.save(appointment4);
 
         // Add rooms available for use to the locations
         location.addRoom(room);
