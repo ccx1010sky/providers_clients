@@ -24,7 +24,7 @@ const WebRoutes = () => {
   const [providerData,setProviderData] = useState({})
   const [providerAppointmentData,setProviderAppointmentData] = useState([])
   const [clientData,setClientData]=useState({})
-  const [clientAppointmentData,setClientAppointmentData]=([])
+  const [clientAppointmentData,setClientAppointmentData]=useState([])
 
   
   
@@ -35,8 +35,10 @@ const WebRoutes = () => {
   
   useEffect(() => {
     if(Object.keys(providerData).length !== 0 ){setProviderAppointmentData(providerData.appointments)}
-    if(Object.keys(clientData).length!==0){setClientAppointmentData(clientData.appointments)}
   }, [providerData]);
+  useEffect(() => {
+    if(Object.keys(clientData).length!==0){setClientAppointmentData(clientData.appointments)}
+  }, [clientData]);
    
 
 

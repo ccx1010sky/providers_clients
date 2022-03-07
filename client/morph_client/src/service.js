@@ -1,7 +1,6 @@
 const baseURLAppointments = "http://localhost:8080/api/appointments/";
 const baseURLProviders = "http://localhost:8080/api/providers/";
 const baseURLClients = "http://localhost:8080/api/clients/";
-const baseURLClient = "http://localhost:8080/api/clients/";
 const baseURLLocations = "http://localhost:8080/api/locations/";
 const baseURLRooms = "http://localhost:8080/api/rooms/";
 
