@@ -91,6 +91,23 @@ public class DataLoader implements ApplicationRunner {
         location2.addProvider(provider2);
         locationRepository.save(location2);
 
+//        // Add clients to a provider
+//        provider.addClient(client);
+//        provider.addClient(client2);
+//        provider.addClient(client3);
+//        providerRepository.save(provider);
+//        provider2.addClient(client);
+//        provider2.addClient(client3);
+//        providerRepository.save(provider2);
+//        provider3.addClient(client);
+//        providerRepository.save(provider3);
+//
+//        // Give locations providers that are available at that location
+//        // Should give same result as adding locations to providers
+//        client2.addProvider(provider3);
+//        client2.addProvider(provider2);
+//        clientRepository.save(client2);
+
 
 
 

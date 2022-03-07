@@ -40,7 +40,7 @@ public class Location {
     private List<Admin> admins;
 
     @ManyToMany
-    @JsonIgnoreProperties({"locations"})
+    @JsonIgnoreProperties({"locations","rooms"})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "locations_providers",

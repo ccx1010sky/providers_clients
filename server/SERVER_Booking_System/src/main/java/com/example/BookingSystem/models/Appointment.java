@@ -15,12 +15,12 @@ public class Appointment {
     private Long id;
 
 
-    @JsonIgnoreProperties("appointments")
+    @JsonIgnoreProperties({"appointments", "providers"})
     @ManyToOne
     @JoinColumn(name = "client_id ", nullable = false)
     private Client client;
 
-    @JsonIgnoreProperties("appointments")
+    @JsonIgnoreProperties({"appointments", "locations", "clients"})
     @ManyToOne
     @JoinColumn(name = "provider_id ", nullable = false)
     private Provider provider;
@@ -53,6 +53,7 @@ public class Appointment {
         this.type = type;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.provider.addClient(this.client);
     }
 
     public Appointment() {

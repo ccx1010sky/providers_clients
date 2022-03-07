@@ -2,6 +2,7 @@ package com.example.BookingSystem.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -33,6 +34,24 @@ public class Client {
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
+    @ManyToMany
+    @JsonIgnoreProperties({"clients", "locations", "appointments"})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "clients_providers",
+            joinColumns = { @JoinColumn(
+                    name = "client_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "provider_id",
+                    nullable = false,
+                    updatable = false)
+            }
+    )
+    private List<Provider> providers;
+
     public Client(){
     }
 
@@ -43,6 +62,15 @@ public class Client {
         this.phone = phone;
         this.email = email;
         this.appointments = new ArrayList<>();
+        this.providers = new ArrayList<>();
+    }
+
+    public List<Provider> getProviders() {
+        return providers;
+    }
+
+    public void setProviders(List<Provider> providers) {
+        this.providers = providers;
     }
 
     public String getDob() {
@@ -99,5 +127,11 @@ public class Client {
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public void addProvider(Provider provider) {
+        if (!this.providers.contains(provider)) {
+            this.providers.add(provider);
+        }
     }
 }
