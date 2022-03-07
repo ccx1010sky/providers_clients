@@ -27,7 +27,7 @@ public class Provider {
     @Column(name = "role")
     private String role;
 
-    @JsonIgnoreProperties(value="provider")
+    @JsonIgnoreProperties(value= {"appointments", "locations", "clients"})
     @OneToMany(mappedBy = "provider",fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
