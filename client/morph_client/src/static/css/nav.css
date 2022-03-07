@@ -1,0 +1,29 @@
+.header {
+  background-color: rgb(230, 213, 213);
+}
+
+.logo{
+    margin-left: 30px;
+
+}
+nav{
+    display: flex;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    cursor: pointer;
+}
+.nav-links{
+    display: flex;
+    justify-content: flex-end;
+    padding-top:10px;
+    list-style: none;
+
+}
+
+
+
+.nav-text {
+  display: inline-block;
+  padding: 0 20px;
+}
