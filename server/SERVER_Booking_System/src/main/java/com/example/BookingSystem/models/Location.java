@@ -27,7 +27,7 @@ public class Location {
     @Column(name="email")
     private String email;
 
-    @JsonIgnoreProperties(value="location")
+    @JsonIgnoreProperties(value= {"location", "appointments"})
     @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Room> rooms;
 
@@ -40,7 +40,7 @@ public class Location {
     private List<Admin> admins;
 
     @ManyToMany
-    @JsonIgnoreProperties({"locations","rooms"})
+    @JsonIgnoreProperties({"locations","rooms", "clients", "appointments"})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "locations_providers",

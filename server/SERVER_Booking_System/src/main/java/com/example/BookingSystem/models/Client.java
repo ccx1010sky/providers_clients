@@ -30,7 +30,7 @@ public class Client {
     @Column(name = "email")
     private String email;
 
-    @JsonIgnoreProperties({"client"})
+    @JsonIgnoreProperties({"appointments", "locations", "providers"})
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
