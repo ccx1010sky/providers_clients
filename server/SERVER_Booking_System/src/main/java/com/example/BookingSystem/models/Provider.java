@@ -32,7 +32,7 @@ public class Provider {
     private List<Appointment> appointments;
 
     @ManyToMany
-    @JsonIgnoreProperties({"providers"})
+    @JsonIgnoreProperties({"providers", "rooms", "appointments", "admins"})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "locations_providers",
