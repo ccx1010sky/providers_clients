@@ -167,7 +167,7 @@ export default class Client extends SampleBase {
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
 
-                {/* {this.state ==="Appointments"?<Appointment/> :<Dashboard/>} */}
+                
                 {this.showTargetPage()}
 
               </div>

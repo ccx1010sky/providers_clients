@@ -8,8 +8,11 @@ import Booking from '../containers/Booking';
 import Client from '../containers/Client';
 import {
   getAppointments,
+  getClient,
+  getClientById,
   getClients,
   getLocations,
+  getProviderById,
   getProviders,
   getRooms,
 } from "../service";
@@ -19,17 +22,21 @@ const WebRoutes = () => {
 
   
   const [providerData,setProviderData] = useState({})
-  const [appointmentData,setAppointmentData] = useState([])
+  const [providerAppointmentData,setProviderAppointmentData] = useState([])
+  const [clientData,setClientData]=useState({})
+  const [clientAppointmentData,setClientAppointmentData]=([])
+
   
   
   useEffect(() => {
-    getProviders().then((data) => setProviderData(data));
-  
+    getProviderById(1).then((data) => setProviderData(data));
+    getClientById(1).then((data) => setClientData(data));
    }, []);
   
   useEffect(() => {
-    if(Object.keys(providerData).length !== 0 ){setAppointmentData(providerData.appointments)}
-   }, [providerData]);
+    if(Object.keys(providerData).length !== 0 ){setProviderAppointmentData(providerData.appointments)}
+    if(Object.keys(clientData).length!==0){setClientAppointmentData(clientData.appointments)}
+  }, [providerData]);
    
 
 
@@ -90,8 +97,8 @@ const WebRoutes = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/provider' element={<Provider appointmentData= {appointmentData}/>} />
-        <Route path='/client' element={<Client />} />
+        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData}/>} />
+        <Route path='/client' element={<Client appointmentData={clientAppointmentData}/>} />
         <Route path='/booking' element={<Booking/>} />
       </Routes>
   )

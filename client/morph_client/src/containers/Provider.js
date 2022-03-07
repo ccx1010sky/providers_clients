@@ -25,7 +25,6 @@ export default class Client extends SampleBase {
   
   showTargetPage = () =>{
     
-    
     if ((this.state.page)==="Diary"){return <Diary/>}
     if ((this.state.page)==="Appointments"){return <Appointments appointmentData = {this.props.appointmentData} />} 
     if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
