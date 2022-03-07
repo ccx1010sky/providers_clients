@@ -1,5 +1,7 @@
 package com.example.BookingSystem.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import javax.persistence.*;
 
 @Entity
@@ -15,21 +17,39 @@ public class Admin {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="user_name")
-    private String userName;
+    @Column(name="role")
+    private String role;
 
-    @Column(name ="password")
-    private String password;
+    @JsonIgnoreProperties({"admins"})
+    @ManyToOne
+    @JoinColumn(name = "admin_id", nullable = false)
+    private Location location;
 
-    public Admin(String firstName, String lastName, String userName, String password) {
+    public Admin(String firstName, String lastName, String role, Location location) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
-        this.password = password;
+        this.role = role;
+        this.location = location;
     }
     public Admin(){
-
     }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public Location getLocation() {
+        return location;
+    }
+
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
     public Long getId() {
         return id;
     }
@@ -52,21 +72,5 @@ public class Admin {
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
-    }
-
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 }

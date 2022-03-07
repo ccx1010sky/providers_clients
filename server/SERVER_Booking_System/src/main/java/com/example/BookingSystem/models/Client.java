@@ -2,6 +2,7 @@ package com.example.BookingSystem.models;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -20,26 +21,80 @@ public class Client {
     @Column(name="last_name")
     private String lastName;
 
-    @Column(name="user_name")
-    private String userName;
+    @Column(name="dob")
+    private String dob;
 
-    @Column(name="password")
-    private String password;
+    @Column(name="phone")
+    private String phone;
 
-    //@JsonIgnoreProperties({"client"})
-    @JsonBackReference
+    @Column(name = "email")
+    private String email;
+
+    @JsonIgnoreProperties({"client"})
     @OneToMany(mappedBy = "client", fetch = FetchType.LAZY)
     private List<Appointment> appointments;
+
+    @ManyToMany
+    @JsonIgnoreProperties({"clients", "locations", "appointments"})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "clients_providers",
+            joinColumns = { @JoinColumn(
+                    name = "client_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "provider_id",
+                    nullable = false,
+                    updatable = false)
+            }
+    )
+    private List<Provider> providers;
 
     public Client(){
     }
 
-    public Client(String firstName, String lastName, String userName, String password) {
+    public Client(String firstName, String lastName, String dob, String phone, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.userName = userName;
-        this.password = password;
+        this.dob = dob;
+        this.phone = phone;
+        this.email = email;
         this.appointments = new ArrayList<>();
+        this.providers = new ArrayList<>();
+    }
+
+    public List<Provider> getProviders() {
+        return providers;
+    }
+
+    public void setProviders(List<Provider> providers) {
+        this.providers = providers;
+    }
+
+    public String getDob() {
+        return dob;
+    }
+
+    public void setDob(String dob) {
+        this.dob = dob;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Long getId() {
@@ -66,27 +121,17 @@ public class Client {
         this.lastName = lastName;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
     public List<Appointment> getAppointments() {
         return appointments;
     }
 
     public void setAppointments(List<Appointment> appointments) {
         this.appointments = appointments;
+    }
+
+    public void addProvider(Provider provider) {
+        if (!this.providers.contains(provider)) {
+            this.providers.add(provider);
+        }
     }
 }

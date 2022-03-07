@@ -28,15 +28,19 @@ public class Location {
     private String email;
 
     @JsonIgnoreProperties(value="location")
-    @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
-    private List<Room> workspaces;
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Room> rooms;
 
     @JsonIgnoreProperties(value="location")
-    @OneToMany(mappedBy = "location",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     private List<Appointment> appointments;
 
+    @JsonIgnoreProperties(value="location")
+    @OneToMany(mappedBy = "location", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
+    private List<Admin> admins;
+
     @ManyToMany
-    @JsonIgnoreProperties({"locations"})
+    @JsonIgnoreProperties({"locations","rooms"})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
             name = "locations_providers",
@@ -58,11 +62,37 @@ public class Location {
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
-        this.workspaces =new ArrayList<>();
-        this.providers =new ArrayList<>();
+        this.rooms = new ArrayList<>();
+        this.admins = new ArrayList<>();
+        this.providers = new ArrayList<>();
+        this.appointments = new ArrayList<>();
     }
 
     public Location(){
+    }
+
+    public List<Appointment> getAppointments() {
+        return appointments;
+    }
+
+    public void setAppointments(List<Appointment> appointments) {
+        this.appointments = appointments;
+    }
+
+    public List<Admin> getAdmins() {
+        return admins;
+    }
+
+    public void setAdmins(List<Admin> admins) {
+        this.admins = admins;
+    }
+
+    public List<Room> getRooms() {
+        return rooms;
+    }
+
+    public void setRooms(List<Room> rooms) {
+        this.rooms = rooms;
     }
 
     public Long getId() {
@@ -109,14 +139,6 @@ public class Location {
         this.providers.add(provider);
     }
 
-    public List<Room> getWorkspaces() {
-        return workspaces;
-    }
-
-    public void setWorkspaces(List<Room> workspaces) {
-        this.workspaces = workspaces;
-    }
-
     public List<Provider> getProviders() {
         return providers;
     }
@@ -126,6 +148,9 @@ public class Location {
     }
 
     public void addRoom(Room room){
-        this.workspaces.add(room);
+        this.rooms.add(room);
     }
+
+    public void addAdmin(Admin admin) {this.admins.add(admin); }
+
 }

@@ -20,4 +20,19 @@ public class ProviderController {
     public ResponseEntity<List<Provider>> getProviders(){
         return new ResponseEntity<>(providerRespository.findAll(), HttpStatus.OK);
     }
+
+    //SHOW
+
+
+    // CREATE
+
+
+    // UPDATE
+
+
+    // DESTROY
+
+
+
+    // Custom Routes
 }

@@ -30,29 +30,16 @@ public class DataLoader implements ApplicationRunner {
     public void run(ApplicationArguments args){
         Provider provider = new Provider("Dave","Andrews","DA25","1234");
         providerRepository.save(provider);
-
         Provider provider2 = new Provider("Jenny","Andrews","JA25","1234");
         providerRepository.save(provider2);
-
         Provider provider3 = new Provider("Bernie","Andrews","BA25","1234");
         providerRepository.save(provider3);
 
-        Admin admin = new Admin("Freya","Jules","FJ25","1234");
-        adminRepository.save(admin);
-
-        Admin admin2 = new Admin("Jessica","Mathews","JM25","1234");
-        adminRepository.save(admin2);
-
-        Admin admin3 = new Admin("Alfred","Doyle","AD25","1234");
-        adminRepository.save(admin3);
-
-        Client client = new Client("John","Smith","JS25","1234");
+        Client client = new Client("John","Smith","04/12/1975", "07957234153", "john@johnmail.com");
         clientRepository.save(client);
-
-        Client client2 = new Client("Mandy","Mendoza","MM25","1234");
+        Client client2 = new Client("Mandy","Mendoza","12/02/1999", "07878567435", "manmendo@gmail.com");
         clientRepository.save(client2);
-
-        Client client3 = new Client("Sally","Simpleton","SS25","1234");
+        Client client3 = new Client("Sally","Simpleton","09/07/2001", "07834567234", "saldip@yahoo.com");
         clientRepository.save(client3);
 
         Location location = new Location("Big Building","35 Big Road","123456789","BigBuilding@Gmail.com");
@@ -62,6 +49,13 @@ public class DataLoader implements ApplicationRunner {
         Location location3 = new Location("Small Building","35 Small Road","123456789","SmallBuilding@Gmail.com");
         locationRepository.save(location3);
 
+        Admin admin = new Admin("Freya","Jules","Practice Manager", location);
+        adminRepository.save(admin);
+        Admin admin2 = new Admin("Jessica","Mathews","Receptionist", location2);
+        adminRepository.save(admin2);
+        Admin admin3 = new Admin("Alfred","Doyle","Receptionist", location3);
+        adminRepository.save(admin3);
+
         Room room = new Room("Room 1", 3, location);
         roomRepository.save(room);
         Room room2 = new Room("Room 2", 3, location);
@@ -69,30 +63,50 @@ public class DataLoader implements ApplicationRunner {
         Room room3 = new Room("Room 3", 3, location);
         roomRepository.save(room3);
 
-        Appointment appointment1 = new Appointment(client, provider, location, "massage","19:00","18:00");
+        Appointment appointment1 = new Appointment(client, provider, location, room2,  "massage","19:00","18:00");
         appointmentRepository.save(appointment1);
-
-        Appointment appointment2 = new Appointment(client, provider2, location,"Dentist","2:00","3:00");
+        Appointment appointment2 = new Appointment(client, provider2, location, room, "Dentist","2:00","3:00");
         appointmentRepository.save(appointment2);
 
+        // Add rooms available for use to the locations
         location.addRoom(room);
         location.addRoom(room2);
         location.addRoom(room3);
         locationRepository.save(location);
 
+        // Give providers locations they are available
         provider.addLocation(location);
         provider.addLocation(location2);
         provider.addLocation(location3);
         providerRepository.save(provider);
         provider2.addLocation(location);
-        provider2.addLocation(location2);
         provider2.addLocation(location3);
         providerRepository.save(provider2);
         provider3.addLocation(location);
-        provider3.addLocation(location2);
-        provider3.addLocation(location3);
         providerRepository.save(provider3);
 
+        // Give locations providers that are available at that location
+        // Should give same result as adding locations to providers
+        location2.addProvider(provider3);
+        location2.addProvider(provider2);
+        locationRepository.save(location2);
+
+//        // Add clients to a provider
+//        provider.addClient(client);
+//        provider.addClient(client2);
+//        provider.addClient(client3);
+//        providerRepository.save(provider);
+//        provider2.addClient(client);
+//        provider2.addClient(client3);
+//        providerRepository.save(provider2);
+//        provider3.addClient(client);
+//        providerRepository.save(provider3);
+//
+//        // Give locations providers that are available at that location
+//        // Should give same result as adding locations to providers
+//        client2.addProvider(provider3);
+//        client2.addProvider(provider2);
+//        clientRepository.save(client2);
 
 
 

@@ -15,12 +15,12 @@ public class Appointment {
     private Long id;
 
 
-    @JsonIgnoreProperties("appointments")
+    @JsonIgnoreProperties({"appointments", "providers"})
     @ManyToOne
     @JoinColumn(name = "client_id ", nullable = false)
     private Client client;
 
-    @JsonIgnoreProperties("appointments")
+    @JsonIgnoreProperties({"appointments", "locations", "clients"})
     @ManyToOne
     @JoinColumn(name = "provider_id ", nullable = false)
     private Provider provider;
@@ -34,19 +34,26 @@ public class Appointment {
     @Column(name="endTime")
     private String endTime;
 
-    //@JsonIgnoreProperties({"appointments"})
-    @JsonBackReference
+    @JsonIgnoreProperties({"appointments", "rooms", "admins", "providers"})
     @ManyToOne
     @JoinColumn(name = "location_id", nullable = false)
     private Location location;
 
-    public Appointment(Client client, Provider provider, Location location, String type, String startTime, String endTime) {
+    @JsonIgnoreProperties({"appointments", "location"})
+    @ManyToOne
+    @JoinColumn(name = "room_id", nullable = false)
+    private Room room;
+
+
+    public Appointment(Client client, Provider provider, Location location, Room room, String type, String startTime, String endTime) {
         this.client = client;
         this.provider = provider;
         this.location = location;
+        this.room = room;
         this.type = type;
         this.startTime = startTime;
         this.endTime = endTime;
+        this.provider.addClient(this.client);
     }
 
     public Appointment() {
@@ -58,6 +65,14 @@ public class Appointment {
 
     public void setLocation(Location location) {
         this.location = location;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
     }
 
     public Long getId() {
