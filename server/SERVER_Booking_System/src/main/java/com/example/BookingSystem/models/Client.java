@@ -35,6 +35,24 @@ public class Client {
     private List<Appointment> appointments;
 
     @ManyToMany
+    @JsonIgnoreProperties({"providers", "appointments"})
+    @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
+    @JoinTable(
+            name = "clients_locations",
+            joinColumns = { @JoinColumn(
+                    name = "client_id",
+                    nullable = false,
+                    updatable = false)
+            },
+            inverseJoinColumns = { @JoinColumn(
+                    name = "location_id",
+                    nullable = false,
+                    updatable = false)
+            }
+    )
+    private List<Location> locations;
+
+    @ManyToMany
     @JsonIgnoreProperties({"clients", "locations", "appointments"})
     @Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
     @JoinTable(
@@ -63,6 +81,15 @@ public class Client {
         this.email = email;
         this.appointments = new ArrayList<>();
         this.providers = new ArrayList<>();
+        this.locations = new ArrayList<>();
+    }
+
+    public List<Location> getLocations() {
+        return locations;
+    }
+
+    public void setLocations(List<Location> locations) {
+        this.locations = locations;
     }
 
     public List<Provider> getProviders() {
