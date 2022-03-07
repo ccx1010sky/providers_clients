@@ -28,12 +28,18 @@ public class DataLoader implements ApplicationRunner {
     }
 
     public void run(ApplicationArguments args){
-        Provider provider = new Provider("Dave","Andrews","DA25","1234");
+        Provider provider = new Provider("Dave","Andrews","Physiotherapy","Physiotherapist");
         providerRepository.save(provider);
-        Provider provider2 = new Provider("Jenny","Andrews","JA25","1234");
+        Provider provider2 = new Provider("Jenny","Andrews","Sports Massage"," Senior Sports Massage Therapist");
         providerRepository.save(provider2);
-        Provider provider3 = new Provider("Bernie","Andrews","BA25","1234");
+        Provider provider3 = new Provider("Bernie","Andrews","Podiatry & Bio-mechanics","Podiatrist");
         providerRepository.save(provider3);
+        Provider provider4 = new Provider("Dave","Andrews","Sports Nutrition","Nutritionist");
+        providerRepository.save(provider4);
+        Provider provider5 = new Provider("Jenny","Andrews","Physiotherapy","Senior Physio");
+        providerRepository.save(provider5);
+        Provider provider6 = new Provider("Bernie","Andrews","Swedish Massage","Swedish Massage Therapist");
+        providerRepository.save(provider6);
 
         Client client = new Client("John","Smith","04/12/1975", "07957234153", "john@johnmail.com");
         clientRepository.save(client);
@@ -41,6 +47,24 @@ public class DataLoader implements ApplicationRunner {
         clientRepository.save(client2);
         Client client3 = new Client("Sally","Simpleton","09/07/2001", "07834567234", "saldip@yahoo.com");
         clientRepository.save(client3);
+        Client client4 = new Client("John","Denver","09/12/1967", "07957123098", "john@gmail.com");
+        clientRepository.save(client4);
+        Client client5 = new Client("Jane","Hair","12/08/1989", "07878567655", "hairyjane@gmail.com");
+        clientRepository.save(client5);
+        Client client6 = new Client("Godfrey","Bishop","27/07/2000", "07893456123", "godB@yahoo.com");
+        clientRepository.save(client6);
+        Client client7 = new Client("Alice","Smith","04/12/1954", "07867123647", "asmith@aol.com");
+        clientRepository.save(client7);
+        Client client8 = new Client("Bindi","Berloda","29/02/1992", "07865345267", "bindib@gmail.com");
+        clientRepository.save(client8);
+        Client client9 = new Client("Faruq","Azeez","10/07/2001", "07834567784", "fa@yahoo.mr");
+        clientRepository.save(client9);
+        Client client10 = new Client("Jenafleur","Starflower","20/03/1987", "07956783098", "dirtyhippy@gmail.com");
+        clientRepository.save(client10);
+        Client client11 = new Client("Bart","Bane","12/08/1997", "078785876225", "boldboy@gmail.com");
+        clientRepository.save(client11);
+        Client client12 = new Client("Sonia","Leishman","27/06/2000", "07893456098", "sonical@yahoo.com");
+        clientRepository.save(client12);
 
         Location location = new Location("Big Building","35 Big Road","123456789","BigBuilding@Gmail.com");
         locationRepository.save(location);
@@ -63,10 +87,23 @@ public class DataLoader implements ApplicationRunner {
         Room room3 = new Room("Room 3", 3, location);
         roomRepository.save(room3);
 
-        Appointment appointment1 = new Appointment(client, provider, location, room2,  "massage","19:00","18:00");
+        // client 1 appointments
+        Appointment appointment1 = new Appointment(client, provider, location, room2,  "massage","31/01/2022","19:00","18:00");
         appointmentRepository.save(appointment1);
-        Appointment appointment2 = new Appointment(client, provider2, location, room, "Dentist","2:00","3:00");
+        Appointment appointment2 = new Appointment(client, provider2, location, room, "Dentist", "02/02/2022", "2:00","3:00");
         appointmentRepository.save(appointment2);
+        Appointment appointment3 = new Appointment(client, provider, location, room2,  "massage","07/02/2022","19:00","18:00");
+        appointmentRepository.save(appointment3);
+        Appointment appointment4 = new Appointment(client, provider2, location, room, "Dentist","20/02/2022","2:00","3:00");
+        appointmentRepository.save(appointment4);
+        Appointment appointment5 = new Appointment(client, provider, location, room2,  "massage","23/02/2022","19:00","18:00");
+        appointmentRepository.save(appointment5);
+        Appointment appointment6 = new Appointment(client, provider2, location, room, "Dentist", "27/02/2022", "2:00","3:00");
+        appointmentRepository.save(appointment6);
+        Appointment appointment7 = new Appointment(client, provider, location, room2,  "massage","07/03/2022","19:00","18:00");
+        appointmentRepository.save(appointment7);
+        Appointment appointment8 = new Appointment(client, provider2, location, room, "Dentist","20/03/2022","2:00","3:00");
+        appointmentRepository.save(appointment8);
 
         // Add rooms available for use to the locations
         location.addRoom(room);
