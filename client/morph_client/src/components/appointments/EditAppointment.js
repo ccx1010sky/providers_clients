@@ -3,10 +3,8 @@ import * as React from "react";
 import { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import { fontSize, width } from "@mui/system";
-    // import TextField from '@mui/material/TextField';
-    
-export default function SingleAppointment({singleAppointmentData}) {
 
+const EditAppointment = ({singleAppointmentData, setPage}) => {
     const [pageToDispaly, setPageToDisplay] = useState("loading")
     useEffect(() => {
         if(Object.keys(singleAppointmentData).length !== 0){
@@ -20,7 +18,6 @@ export default function SingleAppointment({singleAppointmentData}) {
     if(pageToDispaly === "content"){
         return (
             <div>
-            {console.log(singleAppointmentData)}
             <Box
             sx={{
                 boxShadow: 10, // theme.shadows[1]
@@ -40,7 +37,7 @@ export default function SingleAppointment({singleAppointmentData}) {
             >
             <div className="display-panel">
                 <div>
-                <h2>Appointment Details</h2>
+                <h2>Edit Appointment</h2>
                 </div>
                 <div>
                 <TextField
@@ -188,20 +185,34 @@ export default function SingleAppointment({singleAppointmentData}) {
                 </TextField>
                 </div>
             </div>
-            <Button variant="contained">Edit</Button>
+            <div>
+                <Button 
+                    sx={{
+                        m:0.5,
+                    }}
+                    variant="contained" 
+                    onClick={handleCancleClick}
+                    size="large"
+                >Cancle</Button>
+                <Button 
+                    variant="contained" 
+                    onClick={handleUpdateClick}
+                    size="large"
+                >Edit</Button>
+            </div>
             </Box>
             </div>
         );
-        
+        function handleUpdateClick(){
+            console.log("I click")
+        }
+        function handleCancleClick(){
+            setPage("Single Appointment")
+        }
     }
-}
+};
 
 
-
-
-
-
-
-
+export default EditAppointment;
 
 

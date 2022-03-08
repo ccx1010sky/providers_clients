@@ -6,12 +6,14 @@ import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { SampleBase } from "../sample-base";
 import "./sidebar-menu.css";
-import Appointments from "../components/Appointments";
 import Diary from "../components/Diary";
 import Dashboard from "../components/Dashboard";
 import Teams from "../components/Teams";
 import Clients from "../components/Clients";
-import SingleAppointment from "../components/SingleAppointment";
+import Appointments from "../components/appointments/Appointments";
+import SingleAppointment from "../components/appointments/SingleAppointment";
+import EditAppointment from "../components/appointments/EditAppointment";
+
 
 
 
@@ -36,8 +38,8 @@ export default class Client extends SampleBase {
     if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
     if ((this.state.page)==="Clients"){return  <Clients/>}
     if ((this.state.page)==="Teams"){return  <Teams/>}
-    if ((this.state.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData}/>}
-
+    if ((this.state.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.setPage.bind(this)}/>}
+    if ((this.state.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.setPage.bind(this)}/>}
   }
   constructor() {
     super(...arguments);
