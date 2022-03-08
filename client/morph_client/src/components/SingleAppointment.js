@@ -52,8 +52,8 @@ export default function SingleAppointment({singleAppointmentData}) {
                         xs: 0.3, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
                     },
                     }}
-                    // label="Client name"
-                    placeholder={singleAppointmentData.client.firstName}
+                    label="Client name"
+                    defaultValue={singleAppointmentData.client.firstName + " " + singleAppointmentData.client.lastName}
                 >
                     data goes here
                 </TextField>
