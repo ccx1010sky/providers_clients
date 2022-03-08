@@ -39,7 +39,7 @@ export default class Client extends SampleBase {
   showTargetPage = () =>{
     
     if((this.state.page) ==="Diary"){return <Diary/>}
-    if((this.state.page)==="Appointments"){return <Appointments/>} 
+    if((this.state.page)==="Appointments"){return <Appointments appointmentData = {this.props.appointmentData}/>} 
     if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
     if ((this.state.page)==="Accounts"){return  <Accounts/>}
     
@@ -167,7 +167,7 @@ export default class Client extends SampleBase {
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
 
-                {/* {this.state ==="Appointments"?<Appointment/> :<Dashboard/>} */}
+                
                 {this.showTargetPage()}
 
               </div>
