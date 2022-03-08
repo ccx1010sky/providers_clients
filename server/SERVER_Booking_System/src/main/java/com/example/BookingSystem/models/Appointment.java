@@ -28,6 +28,9 @@ public class Appointment {
     @Column(name="type")
     private String type;
 
+    @Column(name = "date")
+    private String date;
+
     @Column(name="startTime")
     private String startTime;
 
@@ -45,18 +48,26 @@ public class Appointment {
     private Room room;
 
 
-    public Appointment(Client client, Provider provider, Location location, Room room, String type, String startTime, String endTime) {
+    public Appointment(Client client, Provider provider, Location location, Room room, String type, String date, String startTime, String endTime) {
         this.client = client;
         this.provider = provider;
         this.location = location;
         this.room = room;
         this.type = type;
+        this.date = date;
         this.startTime = startTime;
         this.endTime = endTime;
         this.provider.addClient(this.client);
     }
 
     public Appointment() {
+    }
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
     }
 
     public Location getLocation() {
