@@ -11,6 +11,7 @@ import Diary from "../components/Diary";
 import Dashboard from "../components/Dashboard";
 import Teams from "../components/Teams";
 import Clients from "../components/Clients";
+import SingleAppointment from "../components/SingleAppointment";
 
 
 
@@ -21,16 +22,22 @@ export default class Client extends SampleBase {
     page:"Dashboard"
   }
   
-
+  setPage =(value)=>{
+   this.setState({
+      
+    page:value
+   })
+ }
   
   showTargetPage = () =>{
     
     if ((this.state.page)==="Diary"){return <Diary/>}
-    if ((this.state.page)==="Appointments"){return <Appointments appointmentData = {this.props.appointmentData} />} 
+    if ((this.state.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.setPage.bind(this)} setAppointment ={this.props.setAppointmentId} />} 
     if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
     if ((this.state.page)==="Clients"){return  <Clients/>}
     if ((this.state.page)==="Teams"){return  <Teams/>}
-    if ((this.state.page)==="Locations"){return  <Dashboard/>}
+    if ((this.state.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData}/>}
+
   }
   constructor() {
     super(...arguments);
@@ -150,7 +157,7 @@ export default class Client extends SampleBase {
               <div className="main-menu">
                 <p className="main-menu-header">MAIN</p>
                 <MenuComponent
-                     onClick={this.menuClick.bind(this)}
+                  onClick={this.menuClick.bind(this)}
                   items={this.menuItems}
                   orientation="Vertical"
                   cssClass="dock-menu"
@@ -165,7 +172,7 @@ export default class Client extends SampleBase {
             </SidebarComponent>
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
-              
+               
                 <div> {this.showTargetPage()}</div>
               </div>
             </div>

@@ -8,7 +8,7 @@ export const getAppointments = () => {
   return fetch(baseURLAppointments).then((res) => res.json());
 };
 
-export const getAppointmentByID = (id) => {
+export const getAppointmentById = (id) => {
   return fetch(baseURLAppointments+id).then((res) => res.json());
 };
 
