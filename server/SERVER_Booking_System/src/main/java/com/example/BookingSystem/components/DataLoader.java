@@ -87,23 +87,59 @@ public class DataLoader implements ApplicationRunner {
         Room room3 = new Room("Room 3", 3, location);
         roomRepository.save(room3);
 
-        // client 1 appointments
-        Appointment appointment1 = new Appointment(client, provider, location, room2,  "massage","31/01/2022","19:00","18:00");
+        // client 1 appointments all with providier 1
+        Appointment appointment1 = new Appointment(client, provider, location, room,  "Physio","31/01/2022","19:00","18:00");
         appointmentRepository.save(appointment1);
-        Appointment appointment2 = new Appointment(client, provider2, location, room, "Dentist", "02/02/2022", "2:00","3:00");
+        Appointment appointment2 = new Appointment(client, provider, location, room, "Physio", "02/02/2022", "2:00","3:00");
         appointmentRepository.save(appointment2);
-        Appointment appointment3 = new Appointment(client, provider, location, room2,  "massage","07/02/2022","19:00","18:00");
+        Appointment appointment3 = new Appointment(client, provider, location, room,  "Physio","07/02/2022","19:00","18:00");
         appointmentRepository.save(appointment3);
-        Appointment appointment4 = new Appointment(client, provider2, location, room, "Dentist","20/02/2022","2:00","3:00");
+        Appointment appointment4 = new Appointment(client, provider, location, room, "Physio","20/02/2022","2:00","3:00");
         appointmentRepository.save(appointment4);
-        Appointment appointment5 = new Appointment(client, provider, location, room2,  "massage","23/02/2022","19:00","18:00");
+        Appointment appointment5 = new Appointment(client, provider, location, room,  "Physio","23/02/2022","19:00","18:00");
         appointmentRepository.save(appointment5);
-        Appointment appointment6 = new Appointment(client, provider2, location, room, "Dentist", "27/02/2022", "2:00","3:00");
+        Appointment appointment6 = new Appointment(client, provider, location, room, "Physio", "27/02/2022", "2:00","3:00");
         appointmentRepository.save(appointment6);
-        Appointment appointment7 = new Appointment(client, provider, location, room2,  "massage","07/03/2022","19:00","18:00");
+        Appointment appointment7 = new Appointment(client, provider, location, room,  "Physio","07/03/2022","19:00","18:00");
         appointmentRepository.save(appointment7);
-        Appointment appointment8 = new Appointment(client, provider2, location, room, "Dentist","20/03/2022","2:00","3:00");
+        Appointment appointment8 = new Appointment(client, provider, location, room, "Physio","20/03/2022","2:00","3:00");
         appointmentRepository.save(appointment8);
+
+        // CLient 2 appointements with provider 1 & 2
+        Appointment appointment11 = new Appointment(client2, provider2, location, room,  "Sports Massage","31/01/2022","19:00","18:00");
+        appointmentRepository.save(appointment11);
+        Appointment appointment21 = new Appointment(client2, provider, location, room, "Physio", "02/02/2022", "2:00","3:00");
+        appointmentRepository.save(appointment21);
+        Appointment appointment31 = new Appointment(client2, provider2, location, room,  "Sports Massage","07/02/2022","19:00","18:00");
+        appointmentRepository.save(appointment31);
+        Appointment appointment41 = new Appointment(client2, provider, location, room, "Physio","20/02/2022","2:00","3:00");
+        appointmentRepository.save(appointment41);
+        Appointment appointment51 = new Appointment(client2, provider2, location, room,  "Sports Massage","23/02/2022","19:00","18:00");
+        appointmentRepository.save(appointment51);
+        Appointment appointment61 = new Appointment(client2, provider, location, room, "Physio", "27/02/2022", "2:00","3:00");
+        appointmentRepository.save(appointment61);
+        Appointment appointment71 = new Appointment(client2, provider2, location, room,  "Sports Massage","07/03/2022","19:00","18:00");
+        appointmentRepository.save(appointment71);
+        Appointment appointment81 = new Appointment(client2, provider, location, room, "Physio","20/03/2022","2:00","3:00");
+        appointmentRepository.save(appointment81);
+
+        // Client 3 Appointments with Provider 3 Podiatry & Bio-mechanics
+        Appointment appointment12 = new Appointment(client3, provider3, location, room,  "Podiatry & Bio-mechanicse","31/01/2022","19:00","18:00");
+        appointmentRepository.save(appointment12);
+        Appointment appointment22 = new Appointment(client3, provider3, location, room, "Podiatry & Bio-mechanics", "02/02/2022", "2:00","3:00");
+        appointmentRepository.save(appointment22);
+        Appointment appointment32 = new Appointment(client3, provider3, location, room,  "Podiatry & Bio-mechanics","07/02/2022","19:00","18:00");
+        appointmentRepository.save(appointment32);
+        Appointment appointment42 = new Appointment(client3, provider3, location, room, "Podiatry & Bio-mechanics","20/02/2022","2:00","3:00");
+        appointmentRepository.save(appointment42);
+        Appointment appointment52 = new Appointment(client3, provider3, location, room,  "Podiatry & Bio-mechanics","23/02/2022","19:00","18:00");
+        appointmentRepository.save(appointment52);
+        Appointment appointment62 = new Appointment(client3, provider3, location, room, "Podiatry & Bio-mechanics", "27/02/2022", "2:00","3:00");
+        appointmentRepository.save(appointment62);
+        Appointment appointment72 = new Appointment(client3, provider3, location, room,  "Podiatry & Bio-mechanics","07/03/2022","19:00","18:00");
+        appointmentRepository.save(appointment72);
+        Appointment appointment82 = new Appointment(client3, provider3, location, room, "Podiatry & Bio-mechanics","20/03/2022","2:00","3:00");
+        appointmentRepository.save(appointment82);
 
         // Add rooms available for use to the locations
         location.addRoom(room);
