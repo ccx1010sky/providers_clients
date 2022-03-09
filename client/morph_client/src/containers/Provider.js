@@ -13,6 +13,7 @@ import Clients from "../components/Clients";
 import Appointments from "../components/appointments/Appointments";
 import SingleAppointment from "../components/appointments/SingleAppointment";
 import EditAppointment from "../components/appointments/EditAppointment";
+import CreateAppointment from "../components/appointments/CreateAppointment";
 
 
 
@@ -35,12 +36,13 @@ export default class Client extends SampleBase {
   showTargetPage = () =>{
   
     if ((this.props.page)==="Diary"){return <Diary/>}
-    if ((this.props.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.props.setPage} setAppointment ={this.props.setAppointmentId} />} 
     if ((this.props.page)==="Dashboard"){return  <Dashboard/>}
     if ((this.props.page)==="Clients"){return  <Clients/>}
     if ((this.props.page)==="Teams"){return  <Teams/>}
+    if ((this.props.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.props.setPage} setAppointment ={this.props.setAppointmentId} />} 
     if ((this.props.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)}/>}
     if ((this.props.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)} locationData={this.props.locationData} therapistData={this.props.therapistData} providerClients={this.props.providerClients}/>}
+    if ((this.props.page)==="Create Appointment"){return <CreateAppointment/>}
   }
   constructor() {
     super(...arguments);

@@ -40,6 +40,9 @@ const Appointments = ({appointmentsData, setPage, setAppointment}) => {
       setPage("Single Appointment")
     
     }
+    function handleNewAppClick(){
+      setPage("Create Appointment")
+    }
 
     return (
     <>  
@@ -76,7 +79,7 @@ const Appointments = ({appointmentsData, setPage, setAppointment}) => {
                   mb:2,
               }}
               variant="contained" 
-              // onClick={handleUpdateClick}
+              onClick={handleNewAppClick}
               size="large"
               endIcon={<AddCircleOutline />}
           >
@@ -87,5 +90,7 @@ const Appointments = ({appointmentsData, setPage, setAppointment}) => {
     </>
     )
   }
+
+  
 
 export default Appointments
