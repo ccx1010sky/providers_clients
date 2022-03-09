@@ -8,7 +8,7 @@ export const getAppointments = () => {
   return fetch(baseURLAppointments).then((res) => res.json());
 };
 
-export const getAppointmentByID = (id) => {
+export const getAppointmentById = (id) => {
   return fetch(baseURLAppointments+id).then((res) => res.json());
 };
 
@@ -43,6 +43,18 @@ export const getRooms = () => {
 export const getRoomById = (id) => {
   return fetch(baseURLRooms+id).then((res) => res.json());
 };
+
+export const updateAppointment = (payload, id) => {
+  const stuff = {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  }
+  console.log(stuff.body)
+  return fetch(baseURLAppointments + id, stuff)
+  .then(res => res.json())
+  
+}
 
 
 

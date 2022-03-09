@@ -7,6 +7,7 @@ import Provider from '../containers/Provider';
 import Booking from '../containers/Booking';
 import Client from '../containers/Client';
 import {
+  getAppointmentById,
   getAppointments,
   getClient,
   getClientById,
@@ -20,77 +21,51 @@ import {
 
 const WebRoutes = () => {
 
-  
+  const [appointmentId,setAppointmentId] = useState(0)
   const [providerData,setProviderData] = useState({})
   const [providerAppointmentData,setProviderAppointmentData] = useState([])
   const [clientData,setClientData]=useState({})
   const [clientAppointmentData,setClientAppointmentData]=useState([])
-
+  const [singleAppointmentData,setSingleAppointmentData] = useState({})
+  const [locationData, setLoactionData] = useState([])
+  const [therapistData, setTherapistData] = useState([])
+  const [providerClients, setProviderClients] = useState([]);
+  const [page, setPage] = useState("Dashboard")
   
   
   useEffect(() => {
-    getProviderById(1).then((data) => setProviderData(data));
+    getProviderById(3).then((data) => setProviderData(data));
     getClientById(1).then((data) => setClientData(data));
-   }, []);
+    getLocations().then((data) => setLoactionData(data));
+    getProviders().then((data) => setTherapistData(data));
   
+   }, [page]);
+  
+
+   useEffect(() => {
+     if(appointmentId !== 0){getAppointmentById(appointmentId).then((data) => setSingleAppointmentData(data));}
+   
+   }, [appointmentId]);
+
   useEffect(() => {
-    if(Object.keys(providerData).length !== 0 ){setProviderAppointmentData(providerData.appointments)}
+    if(Object.keys(providerData).length !== 0 ){
+      setProviderAppointmentData(providerData.appointments)
+      setProviderClients(providerData.clients)
+    }
   }, [providerData]);
   useEffect(() => {
     if(Object.keys(clientData).length!==0){setClientAppointmentData(clientData.appointments)}
   }, [clientData]);
    
 
+  const handleSetAppointment=(id)=>{
+    setAppointmentId(id)
+  }
 
-
-  //  const getAppointmentData = (providerData) =>{
-  //     providerData.appointments.map(appointment=>{
-  //       return {
-  //         clientFirstName:appointment.client.firstName
-              
-  //       }
-  //     })
-  //  }
-   
-  //  useEffect(() => {
-  //    if(loadProviderData !== undefined){setProviderData(getAppointmentData(loadProviderData))}
-  //  }, [loadProviderData]);
-
-  
-
-
-
-
-  
-  // useEffect(() => {
-  //  getProviders().then((data) => setProviderData(data));
-  // }, []);
-  
-  
-
+  const pageSetter = (page) => {
+    setPage(page)
+  }
  
-  
-  
-  
-//   const providerData = providerData.map(() => {
-   
-//           provider.appointments.forEach(element => {
-//           gridData.provider_id = provider.id
-//           gridData.providerFirstName =provider.firstName
-//           gridData.providerLastName =provider.lastName
-//           gridData.clientId =element.client.id
-//           gridData.clientFirstName = element.client.firstName
-//           gridData.clientLastName = element.client.lastName
-//           gridData.type = element.type
-//           gridData.startTime =element.startTime
-//           gridData.endTime =element.endTime
-//           finalGridData.push(gridData)
-//           });
-//         return finalGridData
-//       }
-
-// })
-  
 
   
   return (
@@ -99,8 +74,8 @@ const WebRoutes = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData}/>} />
-        <Route path='/client' element={<Client appointmentData={clientAppointmentData}/>} />
+        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData} page={page} setPage={pageSetter} singleAppointmentData={singleAppointmentData} setAppointmentId={handleSetAppointment} locationData={locationData} therapistData={therapistData} providerClients={providerClients}/>} />
+        <Route path='/client' element={<Client appointmentData={clientAppointmentData} singleAppointmentData={singleAppointmentData}/>} />
         <Route path='/booking' element={<Booking/>} />
       </Routes>
   )

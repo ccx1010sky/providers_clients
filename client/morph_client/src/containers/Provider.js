@@ -6,31 +6,41 @@ import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { SampleBase } from "../sample-base";
 import "./sidebar-menu.css";
-import Appointments from "../components/Appointments";
 import Diary from "../components/Diary";
 import Dashboard from "../components/Dashboard";
 import Teams from "../components/Teams";
 import Clients from "../components/Clients";
+import Appointments from "../components/appointments/Appointments";
+import SingleAppointment from "../components/appointments/SingleAppointment";
+import EditAppointment from "../components/appointments/EditAppointment";
+
 
 
 
 export default class Client extends SampleBase {
   
 
-  state = {
-    page:"Dashboard"
-  }
-  
 
+  // state = {
+  //   page:"Dashboard"
+  // }
+  
+  // setPage =(value)=>{
+  //  this.setState({
+      
+  //   page:value
+  //  })
+  //  }
   
   showTargetPage = () =>{
-    
-    if ((this.state.page)==="Diary"){return <Diary/>}
-    if ((this.state.page)==="Appointments"){return <Appointments appointmentData = {this.props.appointmentData} />} 
-    if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
-    if ((this.state.page)==="Clients"){return  <Clients/>}
-    if ((this.state.page)==="Teams"){return  <Teams/>}
-    if ((this.state.page)==="Locations"){return  <Dashboard/>}
+  
+    if ((this.props.page)==="Diary"){return <Diary/>}
+    if ((this.props.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.props.setPage} setAppointment ={this.props.setAppointmentId} />} 
+    if ((this.props.page)==="Dashboard"){return  <Dashboard/>}
+    if ((this.props.page)==="Clients"){return  <Clients/>}
+    if ((this.props.page)==="Teams"){return  <Teams/>}
+    if ((this.props.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)}/>}
+    if ((this.props.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)} locationData={this.props.locationData} therapistData={this.props.therapistData} providerClients={this.props.providerClients}/>}
   }
   constructor() {
     super(...arguments);
@@ -150,7 +160,7 @@ export default class Client extends SampleBase {
               <div className="main-menu">
                 <p className="main-menu-header">MAIN</p>
                 <MenuComponent
-                     onClick={this.menuClick.bind(this)}
+                  onClick={this.menuClick.bind(this)}
                   items={this.menuItems}
                   orientation="Vertical"
                   cssClass="dock-menu"
@@ -165,7 +175,7 @@ export default class Client extends SampleBase {
             </SidebarComponent>
             <div className="main-content" id="maintext">
               <div className="sidebar-menu-content">
-              
+               
                 <div> {this.showTargetPage()}</div>
               </div>
             </div>
@@ -190,10 +200,7 @@ export default class Client extends SampleBase {
   }
   menuClick(event){
     
-    this.setState({
-      
-      page:event.target.ariaLabel 
-     })
+    this.props.setPage(event.target.ariaLabel)
   }
 }
 

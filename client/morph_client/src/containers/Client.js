@@ -18,7 +18,7 @@ import { useState } from "react";
 import { SidebarComponent } from "@syncfusion/ej2-react-navigations";
 import { MenuComponent } from "@syncfusion/ej2-react-navigations";
 import { SampleBase } from "../sample-base";
-import Appointments from "../components/Appointments";
+import Appointments from "../components/appointments/Appointments";
 import "./sidebar-menu.css";
 import Dashboard from "../components/Dashboard";
 import Diary from "../components/Diary";

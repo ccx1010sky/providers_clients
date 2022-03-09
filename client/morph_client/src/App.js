@@ -3,6 +3,7 @@ import {BrowserRouter} from 'react-router-dom'
 import Layout from './components/Layout';
 import WebRoutes from './components/WebRoutes';
 import "./App.css";
+import "./components/appointments/SingleAppointment.css"
 
 
 function App() {
