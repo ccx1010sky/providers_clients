@@ -105,7 +105,8 @@ const EditAppointment = ({singleAppointmentData, providerClients, locationData, 
                     // }}
                     InputProps={{style: {fontSize: 18}}}
                     label="Client name"
-                    defaultValue={clientId}
+                    defaultValue={singleAppointmentData.client.id}
+                    value={clientId}
                     select
                     onChange={handleClientChange}
                     // size="small"
@@ -200,7 +201,9 @@ const EditAppointment = ({singleAppointmentData, providerClients, locationData, 
                     // }}
                     InputProps={{style: {fontSize: 18}}}
                     label="Therapist"
-                    defaultValue={providerId}
+                    defaultValue={singleAppointmentData.provider.id}
+                    value={providerId}
+
                     // size="small"
                     select
                     onChange={handleTherapistChange}
@@ -226,7 +229,8 @@ const EditAppointment = ({singleAppointmentData, providerClients, locationData, 
                     // }}
                     InputProps={{style: {fontSize: 18}}}
                     label="Location"
-                    defaultValue={locationId}
+                    defaultValue={singleAppointmentData.location.id}
+                    value={locationId}
                     // size="small"
                     select
                     onChange={handleLocationChange}
@@ -275,16 +279,19 @@ const EditAppointment = ({singleAppointmentData, providerClients, locationData, 
         function handleUpdateClick(){
             const st = format(new Date(startValue), "hh:mm")
             const et = format(new Date(endValue), "hh:mm")
+            const cId = String(clientId)
             const payload = {
-                client: clientId,
-                provider: providerId,
+                client: {id:clientId},
+                provider: {id:providerId},
                 type: aptType,
                 date: dateValue,
                 startTime: st,
                 endTime: et,
-                location: locationId
+                location: {id:locationId},
+                room: {id: 1}
             }
             console.log(payload)
+            console.log(aptId)
             updateAppointment(payload, aptId);
 
         }
