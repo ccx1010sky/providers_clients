@@ -44,6 +44,15 @@ export const getRoomById = (id) => {
   return fetch(baseURLRooms+id).then((res) => res.json());
 };
 
+export const updateAppointment = (payload, id) => {
+  return fetch(baseURLAppointments + id, {
+    method: 'PUT',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload)
+  })
+  .then(res => res.json())
+}
+
 
 
 

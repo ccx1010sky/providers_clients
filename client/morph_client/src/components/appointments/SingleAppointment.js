@@ -52,21 +52,20 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                 </div>
                 <div>
                 <TextField
-                    sx={{
+                    // sx={{
                         
-                        boxShadow: 5, // theme.shadows[1]
-                        color: "secondary.main", // theme.palette.primary.main
-                        borderRadius: 2,
-                        m: 0.5, // margin: theme.spacing(1)
-                        p: {
-                            xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                        },
-                    }}
+                    //     boxShadow: 5, // theme.shadows[1]
+                    //     color: "secondary.main", // theme.palette.primary.main
+                    //     borderRadius: 2,
+                    //     m: 0.5, // margin: theme.spacing(1)
+                    //     p: {
+                    //         xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    //     },
+                    // }}
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Client name"
                     defaultValue={singleAppointmentData.client.firstName + " " + singleAppointmentData.client.lastName}
-                    size="small"
                     disabled={true}
                 >
                     data goes here
@@ -75,21 +74,20 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                 <div>
                 <TextField
                     className="disabledInput"
-                    sx={{
+                    // sx={{
                         
-                        boxShadow: 5, // theme.shadows[1]
-                        color: "secondary.main", // theme.palette.primary.main
-                        borderRadius: 2,
-                        m: 0.5, // margin: theme.spacing(1)
-                        p: {
-                            xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                        },
-                    }}
+                    //     boxShadow: 5, // theme.shadows[1]
+                    //     color: "secondary.main", // theme.palette.primary.main
+                    //     borderRadius: 2,
+                    //     m: 0.5, // margin: theme.spacing(1)
+                    //     p: {
+                    //         xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    //     },
+                    // }}
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Appointment Type"
                     defaultValue={singleAppointmentData.type}
-                    size="small"
                     disabled
                 >
                     data goes here
@@ -97,20 +95,19 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                 </div>
                 <div>
                 <TextField
-                    sx={{
-                    boxShadow: 5, // theme.shadows[1]
-                    color: "secondary.main", // theme.palette.primary.main
-                    borderRadius: 2,
-                    m: 0.5, // margin: theme.spacing(1)
-                    p: {
-                        xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    },
-                    }}
+                    // sx={{
+                    // boxShadow: 5, // theme.shadows[1]
+                    // color: "secondary.main", // theme.palette.primary.main
+                    // borderRadius: 2,
+                    // m: 0.5, // margin: theme.spacing(1)
+                    // p: {
+                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    // },
+                    // }}
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Date"
                     defaultValue={singleAppointmentData.date}
-                    size="small"
                     disabled
                 >
                     data goes here
@@ -118,43 +115,41 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                 </div>
                 <div>
                 <TextField
-                    style={{width: 150}}
-                    sx={{
-                    boxShadow: 5, // theme.shadows[1]
-                    color: "secondary.main", // theme.palette.primary.main
-                    borderRadius: 2,
-                    m: 0.5, // margin: theme.spacing(1)
-                    p: {
-                        xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    },
-                    }}
+                    // style={{width: 150}}
+                    // sx={{
+                    // boxShadow: 5, // theme.shadows[1]
+                    // color: "secondary.main", // theme.palette.primary.main
+                    // borderRadius: 2,
+                    // m: 0.5, // margin: theme.spacing(1)
+                    // p: {
+                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    // },
+                    // }}
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Start Time"
                     defaultValue={singleAppointmentData.startTime}
-                    size="small"
                     disabled
                 >
                     data goes here
                 </TextField>
 
                 <TextField
-                    style={{width: 150}}
-                    sx={{
-                    boxShadow: 5, // theme.shadows[1]
-                    color: "secondary.main", // theme.palette.primary.main
-                    borderRadius: 2,
-                    m: 0.5, // margin: theme.spacing(1)
-                    p: {
-                        xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    },
+                    // style={{width: 150}}
+                    // sx={{
+                    // boxShadow: 5, // theme.shadows[1]
+                    // color: "secondary.main", // theme.palette.primary.main
+                    // borderRadius: 2,
+                    // m: 0.5, // margin: theme.spacing(1)
+                    // p: {
+                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    // },
 
-                    }}
+                    // }}
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="End Time"
                     defaultValue={singleAppointmentData.endTime}
-                    size="small"
                     disabled
                 >
                     data goes here
@@ -163,21 +158,20 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
 
                 <div>
                 <TextField 
-                    sx={{
-                    boxShadow: 5, // theme.shadows[1]
-                    color: "secondary.main", // theme.palette.primary.main
-                    borderRadius: 2,
-                    m: 0.5, // margin: theme.spacing(1)
-                    p: {
-                        xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    },
+                    // sx={{
+                    // boxShadow: 5, // theme.shadows[1]
+                    // color: "secondary.main", // theme.palette.primary.main
+                    // borderRadius: 2,
+                    // m: 0.5, // margin: theme.spacing(1)
+                    // p: {
+                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    // },
 
-                    }}
+                    // }}
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Therapist"
                     defaultValue={singleAppointmentData.provider.firstName + " " + singleAppointmentData.provider.lastName}
-                    size="small"
                     disabled
                 >
                     data goes here
@@ -185,21 +179,20 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                 </div>
                 <div>
                 <TextField 
-                    sx={{
-                    boxShadow: 5, // theme.shadows[1]
-                    color: "secondary.main", // theme.palette.primary.main
-                    borderRadius: 2,
-                    m: 0.5, // margin: theme.spacing(1)
-                    p: {
-                        xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    },
+                    // sx={{
+                    // boxShadow: 5, // theme.shadows[1]
+                    // color: "secondary.main", // theme.palette.primary.main
+                    // borderRadius: 2,
+                    // m: 0.5, // margin: theme.spacing(1)
+                    // p: {
+                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    // },
 
-                    }}
+                    // }}
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Location"
                     defaultValue={singleAppointmentData.location.name}
-                    size="small"
                     disabled
                 >
                     data goes here

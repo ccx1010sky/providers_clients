@@ -10,6 +10,8 @@ h2 {
 input, label[id^=mui]{
     opacity: 1;
     -webkit-text-fill-color: rgb(0 0 0 / 73%);
+    font-size: 0.5em;
+    margin-left: 2px;
 }
 
 button.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeLarge.MuiButton-containedSizeLarge.MuiButtonBase-root{
@@ -22,6 +24,10 @@ p[id^=mui], p.MuiTablePagination-displayedRows.css-levciy-MuiTablePagination-dis
 
 .MuiTablePagination-actions{
     margin-bottom: 12px;
+}
+
+#endTime{
+    
 }
 
 .MuiInputBase-root.MuiInputBase-colorPrimary.css-16c50h-MuiInputBase-root-MuiTablePagination-select{

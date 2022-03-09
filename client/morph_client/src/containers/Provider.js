@@ -20,6 +20,7 @@ import EditAppointment from "../components/appointments/EditAppointment";
 export default class Client extends SampleBase {
   
 
+
   state = {
     page:"Dashboard"
   }
@@ -32,14 +33,13 @@ export default class Client extends SampleBase {
  }
   
   showTargetPage = () =>{
-    
     if ((this.state.page)==="Diary"){return <Diary/>}
     if ((this.state.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.setPage.bind(this)} setAppointment ={this.props.setAppointmentId} />} 
     if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
     if ((this.state.page)==="Clients"){return  <Clients/>}
     if ((this.state.page)==="Teams"){return  <Teams/>}
     if ((this.state.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.setPage.bind(this)}/>}
-    if ((this.state.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.setPage.bind(this)} locationData={this.props.locationData} therapistData={this.props.therapistData}/>}
+    if ((this.state.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.setPage.bind(this)} locationData={this.props.locationData} therapistData={this.props.therapistData} providerClients={this.props.providerClients}/>}
   }
   constructor() {
     super(...arguments);

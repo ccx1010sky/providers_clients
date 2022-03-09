@@ -29,7 +29,7 @@ const WebRoutes = () => {
   const [singleAppointmentData,setSingleAppointmentData] = useState({})
   const [locationData, setLoactionData] = useState([])
   const [therapistData, setTherapistData] = useState([])
-
+  const [providerClients, setProviderClients] = useState([]);
   
   
   useEffect(() => {
@@ -37,16 +37,20 @@ const WebRoutes = () => {
     getClientById(1).then((data) => setClientData(data));
     getLocations().then((data) => setLoactionData(data));
     getProviders().then((data) => setTherapistData(data));
+  
    }, []);
   
 
    useEffect(() => {
-     if(appointmentId != 0){getAppointmentById(appointmentId).then((data) => setSingleAppointmentData(data));}
+     if(appointmentId !== 0){getAppointmentById(appointmentId).then((data) => setSingleAppointmentData(data));}
    
    }, [appointmentId]);
 
   useEffect(() => {
-    if(Object.keys(providerData).length !== 0 ){setProviderAppointmentData(providerData.appointments)}
+    if(Object.keys(providerData).length !== 0 ){
+      setProviderAppointmentData(providerData.appointments)
+      setProviderClients(providerData.clients)
+    }
   }, [providerData]);
   useEffect(() => {
     if(Object.keys(clientData).length!==0){setClientAppointmentData(clientData.appointments)}
@@ -65,7 +69,7 @@ const WebRoutes = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData} singleAppointmentData={singleAppointmentData} setAppointmentId={handleSetAppointment} locationData={locationData} therapistData={therapistData}/>} />
+        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData} singleAppointmentData={singleAppointmentData} setAppointmentId={handleSetAppointment} locationData={locationData} therapistData={therapistData} providerClients={providerClients}/>} />
         <Route path='/client' element={<Client appointmentData={clientAppointmentData} singleAppointmentData={singleAppointmentData}/>} />
         <Route path='/booking' element={<Booking/>} />
       </Routes>
