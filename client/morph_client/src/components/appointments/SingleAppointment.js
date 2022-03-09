@@ -7,24 +7,8 @@ import { TextField, Button} from "@mui/material";
 import {withStyles, styled} from "@mui/styles";
 import {TextFieldProps} from "@material-ui/core"
 
-// Set color for disabled input
-const DarkerDisabledTextField = withStyles({
-    root: {
-      marginRight: 8,
-      "& .MuiInputBase-root.Mui-disabled": {
-        color: 'black' // (default alpha is 0.38)
-      }
-    }
-  })(TextField);
+// Set color for disabled input??
 
-  const DarkDisabledTextField = withStyles({
-    root: {
-      marginRight: 8,
-      "& .MuiInputBase-root.Mui-disabled": {
-        "-webkit-text-fill-color": "rgba(0, 0, 0, 0.6)" // (default alpha is 0.38)
-      }
-    }
-  })(TextField);
     
 export default function SingleAppointment({singleAppointmentData, setPage}) {
 
@@ -45,10 +29,11 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
         return (
             <div>
             <Box
+            style={{width: 550}}
             sx={{
                 boxShadow: 10, // theme.shadows[1]
                 color: "primary.main", // theme.palette.primary.main
-                m: 7, // margin: theme.spacing(1)
+                m: "auto", // margin: theme.spacing(1)
                 p: {
                 xs: 2, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
                 },
@@ -66,7 +51,7 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                 <h2>Appointment Details</h2>
                 </div>
                 <div>
-                <DarkDisabledTextField
+                <TextField
                     sx={{
                         
                         boxShadow: 5, // theme.shadows[1]
@@ -85,10 +70,11 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                     disabled={true}
                 >
                     data goes here
-                </DarkDisabledTextField>
+                </TextField>
                 </div>
                 <div>
                 <TextField
+                    className="disabledInput"
                     sx={{
                         
                         boxShadow: 5, // theme.shadows[1]
@@ -222,6 +208,7 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
             </div>
             <div>
                 <Button 
+                    style={{width: 100}}
                     variant="contained" 
                     onClick={handleEditClick}
                     size="large"

@@ -19,10 +19,11 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
         return (
             <div>
             <Box
-            sx={{
+                style={{width: 550}}
+                sx={{
                 boxShadow: 10, // theme.shadows[1]
                 color: "primary.main", // theme.palette.primary.main
-                m: 7, // margin: theme.spacing(1)
+                m: "auto", // margin: theme.spacing(1)
                 p: {
                 xs: 2, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
                 },
@@ -37,7 +38,7 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
             >
             <div className="display-panel">
                 <div>
-                <h2>Edit Appointment</h2>
+                <h2 >Edit Appointment</h2>
                 </div>
                 <div>
                 <TextField
@@ -187,14 +188,19 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
             </div>
             <div>
                 <Button 
+                    style={{width: 100}}
                     sx={{
-                        m:0.5,
+                        mr:4,
                     }}
                     variant="contained" 
                     onClick={handleCancleClick}
                     size="large"
                 >Cancle</Button>
                 <Button 
+                    style={{width: 100}}
+                    sx={{
+                        ml:4,
+                    }}
                     variant="contained" 
                     onClick={handleUpdateClick}
                     size="large"

@@ -1,0 +1,34 @@
+h2 {
+    color: rgba(8, 36, 1, 0.534);
+    margin-bottom: 30px;
+}
+.css-1n4twyu-MuiInputBase-input-MuiOutlinedInput-input.Mui-disabled {
+    opacity: 1;
+    -webkit-text-fill-color: rgb(0 0 0 / 73%);
+} 
+
+input, label[id^=mui]{
+    opacity: 1;
+    -webkit-text-fill-color: rgb(0 0 0 / 73%);
+}
+
+button.MuiButton-root.MuiButton-contained.MuiButton-containedPrimary.MuiButton-sizeLarge.MuiButton-containedSizeLarge.MuiButtonBase-root{
+    background-color: rgba(54, 78, 70, 0.699);
+}
+
+p[id^=mui], p.MuiTablePagination-displayedRows.css-levciy-MuiTablePagination-displayedRows{
+    font-size: 12px;
+}
+
+.MuiTablePagination-actions{
+    margin-bottom: 12px;
+}
+
+.MuiInputBase-root.MuiInputBase-colorPrimary.css-16c50h-MuiInputBase-root-MuiTablePagination-select{
+    margin-bottom: 10px;
+    
+}
+
+div#mui-1{
+    font-size: 12;
+}
