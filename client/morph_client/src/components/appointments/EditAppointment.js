@@ -1,16 +1,37 @@
-import { TextField, Button} from "@mui/material";
+import { TextField, Button, MenuItem} from "@mui/material";
 import * as React from "react";
 import { useEffect, useState } from "react";
 import Box from '@mui/material/Box';
 import { fontSize, width } from "@mui/system";
 
-const EditAppointment = ({singleAppointmentData, setPage}) => {
+const EditAppointment = ({singleAppointmentData, locationData, therapistData, setPage}) => {
     const [pageToDispaly, setPageToDisplay] = useState("loading")
     useEffect(() => {
         if(Object.keys(singleAppointmentData).length !== 0){
             setPageToDisplay("content")
         }
     }, [singleAppointmentData]);
+
+    useEffect(() => {
+        if(Object.keys(locationData).length !== 0){
+            console.log(locationData)
+        }
+    }, [singleAppointmentData]);
+
+    
+    const locations = locationData.map(location => {
+        return{
+            value: location.id,
+            label: location.name
+        };
+    })
+
+    const therapists = therapistData.map(therapist => {
+        return{
+            value: therapist.id,
+            label: therapist.firstName + " " + therapist.lastName
+        }
+    })
 
     if(pageToDispaly === "loading"){
         return <div>Loading...</div>
@@ -158,10 +179,16 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Therapist"
-                    defaultValue={singleAppointmentData.provider.firstName + " " + singleAppointmentData.provider.lastName}
+                    defaultValue={singleAppointmentData.provider.id}
                     size="small"
+                    select
+                    onChange={handleTherapistChange}
                 >
-                    data goes here
+                    {therapists.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
                 </TextField>
                 </div>
                 <div>
@@ -179,10 +206,16 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
                     InputLabelProps={{style: {fontSize: 18} }}  // shift lable to right a wee bit!
                     InputProps={{style: {fontSize: 18}}}
                     label="Location"
-                    defaultValue={singleAppointmentData.location.name}
+                    defaultValue={singleAppointmentData.location.id}
                     size="small"
+                    select
+                    onChange={handleLocationChange}
                 >
-                    data goes here
+                    {locations.map((option) => (
+                        <MenuItem key={option.value} value={option.value}>
+                            {option.label}
+                        </MenuItem>
+                    ))}
                 </TextField>
                 </div>
             </div>
@@ -190,7 +223,9 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
                 <Button 
                     style={{width: 100}}
                     sx={{
+                        mt:3,
                         mr:4,
+                        mb:2,
                     }}
                     variant="contained" 
                     onClick={handleCancleClick}
@@ -199,12 +234,14 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
                 <Button 
                     style={{width: 100}}
                     sx={{
+                        mt:3,
                         ml:4,
+                        mb:2,
                     }}
                     variant="contained" 
                     onClick={handleUpdateClick}
                     size="large"
-                >Edit</Button>
+                >Update</Button>
             </div>
             </Box>
             </div>
@@ -214,6 +251,12 @@ const EditAppointment = ({singleAppointmentData, setPage}) => {
         }
         function handleCancleClick(){
             setPage("Single Appointment")
+        }
+        function handleLocationChange(){
+
+        }
+        function handleTherapistChange(){
+
         }
     }
 };

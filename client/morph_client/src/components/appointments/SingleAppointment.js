@@ -209,6 +209,10 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
             <div>
                 <Button 
                     style={{width: 100}}
+                    sx={{
+                        mt:3,
+                        mb:2,
+                    }}
                     variant="contained" 
                     onClick={handleEditClick}
                     size="large"

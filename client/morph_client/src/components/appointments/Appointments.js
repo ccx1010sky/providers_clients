@@ -2,7 +2,7 @@ import React, { Children } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
 import { Pagination } from '@mui/material';
 
-const Appointments = ({appointmentsData,setPage,setAppointment}) => {
+const Appointments = ({appointmentsData, setPage, setAppointment}) => {
 
   const [pageSize, setPageSize] = React.useState(5);
   const rows = appointmentsData.map(appointment=>{
