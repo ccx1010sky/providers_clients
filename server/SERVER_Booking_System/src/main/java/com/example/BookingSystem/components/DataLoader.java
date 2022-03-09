@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader implements ApplicationRunner {
     @Autowired
-    ProviderRespository providerRepository;
+    ProviderRepository providerRepository;
     @Autowired
     AppointmentRepository appointmentRepository;
     @Autowired

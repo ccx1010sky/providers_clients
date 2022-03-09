@@ -1,6 +1,8 @@
 import React, { Children } from 'react'
 import { DataGrid } from '@mui/x-data-grid'
-import { Pagination } from '@mui/material';
+import { Button, Pagination } from '@mui/material';
+import { AddCircleOutline } from '@material-ui/icons';
+
 
 const Appointments = ({appointmentsData, setPage, setAppointment}) => {
 
@@ -43,6 +45,7 @@ const Appointments = ({appointmentsData, setPage, setAppointment}) => {
     <>  
       
       <h2>Appointments</h2>
+
       <div style={{width: '100%' }}>
         <div style={{flexGrow: 1}}></div>
         <DataGrid
@@ -63,6 +66,23 @@ const Appointments = ({appointmentsData, setPage, setAppointment}) => {
           rowsPerPageOptions={[5, 10, 20]}
           components={Pagination}
         />
+      </div>
+      <div id='createButtonRow'>
+          <Button
+              id='newAppoint'
+              sx={{
+                  mt:3,
+                  ml:4,
+                  mb:2,
+              }}
+              variant="contained" 
+              // onClick={handleUpdateClick}
+              size="large"
+              endIcon={<AddCircleOutline />}
+          >
+            New Appointment
+          </Button>
+
       </div>
     </>
     )
