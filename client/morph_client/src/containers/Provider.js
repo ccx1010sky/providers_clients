@@ -33,7 +33,7 @@ export default class Client extends SampleBase {
   //  }
   
   showTargetPage = () =>{
-    this.props.setPage("Diary")
+  
     if ((this.props.page)==="Diary"){return <Diary/>}
     if ((this.props.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.props.setPage} setAppointment ={this.props.setAppointmentId} />} 
     if ((this.props.page)==="Dashboard"){return  <Dashboard/>}
@@ -200,10 +200,7 @@ export default class Client extends SampleBase {
   }
   menuClick(event){
     
-    this.setState({
-      
-      page:event.target.ariaLabel 
-     })
+    this.props.setPage(event.target.ariaLabel)
   }
 }
 
