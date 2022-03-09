@@ -30,6 +30,7 @@ const WebRoutes = () => {
   const [locationData, setLoactionData] = useState([])
   const [therapistData, setTherapistData] = useState([])
   const [providerClients, setProviderClients] = useState([]);
+  const [page, setPage] = useState("Dashboard")
   
   
   useEffect(() => {
@@ -38,7 +39,7 @@ const WebRoutes = () => {
     getLocations().then((data) => setLoactionData(data));
     getProviders().then((data) => setTherapistData(data));
   
-   }, []);
+   }, [page]);
   
 
    useEffect(() => {
@@ -60,6 +61,10 @@ const WebRoutes = () => {
   const handleSetAppointment=(id)=>{
     setAppointmentId(id)
   }
+
+  const pageSetter = (page) => {
+    setPage(page)
+  }
  
 
   
@@ -69,7 +74,7 @@ const WebRoutes = () => {
         <Route path='/' element={<HomePage />} />
         <Route path='/login' element={<Login/>} />
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData} singleAppointmentData={singleAppointmentData} setAppointmentId={handleSetAppointment} locationData={locationData} therapistData={therapistData} providerClients={providerClients}/>} />
+        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData} page={page} setPage={pageSetter} singleAppointmentData={singleAppointmentData} setAppointmentId={handleSetAppointment} locationData={locationData} therapistData={therapistData} providerClients={providerClients}/>} />
         <Route path='/client' element={<Client appointmentData={clientAppointmentData} singleAppointmentData={singleAppointmentData}/>} />
         <Route path='/booking' element={<Booking/>} />
       </Routes>

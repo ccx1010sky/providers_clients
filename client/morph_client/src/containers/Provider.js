@@ -21,25 +21,26 @@ export default class Client extends SampleBase {
   
 
 
-  state = {
-    page:"Dashboard"
-  }
+  // state = {
+  //   page:"Dashboard"
+  // }
   
-  setPage =(value)=>{
-   this.setState({
+  // setPage =(value)=>{
+  //  this.setState({
       
-    page:value
-   })
- }
+  //   page:value
+  //  })
+  //  }
   
   showTargetPage = () =>{
-    if ((this.state.page)==="Diary"){return <Diary/>}
-    if ((this.state.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.setPage.bind(this)} setAppointment ={this.props.setAppointmentId} />} 
-    if ((this.state.page)==="Dashboard"){return  <Dashboard/>}
-    if ((this.state.page)==="Clients"){return  <Clients/>}
-    if ((this.state.page)==="Teams"){return  <Teams/>}
-    if ((this.state.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.setPage.bind(this)}/>}
-    if ((this.state.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.setPage.bind(this)} locationData={this.props.locationData} therapistData={this.props.therapistData} providerClients={this.props.providerClients}/>}
+    this.props.setPage("Diary")
+    if ((this.props.page)==="Diary"){return <Diary/>}
+    if ((this.props.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.props.setPage} setAppointment ={this.props.setAppointmentId} />} 
+    if ((this.props.page)==="Dashboard"){return  <Dashboard/>}
+    if ((this.props.page)==="Clients"){return  <Clients/>}
+    if ((this.props.page)==="Teams"){return  <Teams/>}
+    if ((this.props.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)}/>}
+    if ((this.props.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)} locationData={this.props.locationData} therapistData={this.props.therapistData} providerClients={this.props.providerClients}/>}
   }
   constructor() {
     super(...arguments);
