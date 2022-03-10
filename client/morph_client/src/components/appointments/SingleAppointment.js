@@ -204,6 +204,18 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
                     style={{width: 100}}
                     sx={{
                         mt:3,
+                        mr:4,
+                        mb:2,
+                    }}
+                    variant="contained" 
+                    onClick={handleCancleClick}
+                    size="large"
+                    >Cancel</Button>
+                <Button 
+                    style={{width: 100}}
+                    sx={{
+                        mt:3,
+                        ml:4,
                         mb:2,
                     }}
                     variant="contained" 
@@ -218,15 +230,8 @@ export default function SingleAppointment({singleAppointmentData, setPage}) {
         function handleEditClick(){
             setPage("Edit Appointment")
         }
+        function handleCancleClick(){
+            setPage("Appointments")
+        }
     }
 }
-
-
-
-
-
-
-
-
-
-

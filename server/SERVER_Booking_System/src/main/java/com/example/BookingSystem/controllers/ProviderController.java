@@ -1,8 +1,7 @@
 package com.example.BookingSystem.controllers;
 
-import com.example.BookingSystem.models.Appointment;
 import com.example.BookingSystem.models.Provider;
-import com.example.BookingSystem.repositories.ProviderRespository;
+import com.example.BookingSystem.repositories.ProviderRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,7 +13,7 @@ import java.util.List;
 @CrossOrigin("http://localhost:3000")
 public class ProviderController {
     @Autowired
-    ProviderRespository providerRespository;
+    ProviderRepository providerRespository;
 
     @GetMapping(value = "/providers")
     public ResponseEntity<List<Provider>> getProviders(){
