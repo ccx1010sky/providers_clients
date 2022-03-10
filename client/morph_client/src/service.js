@@ -50,13 +50,18 @@ export const updateAppointment = (payload, id) => {
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(payload),
   }
-  console.log(stuff.body)
   return fetch(baseURLAppointments + id, stuff)
   .then(res => res.json())
-  
 }
 
-
+export const createAppointment = (payload) => {
+  const stuff = {
+    method: 'Post',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  }
+  return fetch(baseURLAppointments, stuff)
+}
 
 
 

@@ -41,8 +41,8 @@ export default class Client extends SampleBase {
     if ((this.props.page)==="Teams"){return  <Teams/>}
     if ((this.props.page)==="Appointments"){return <Appointments appointmentsData = {this.props.appointmentData} setPage={this.props.setPage} setAppointment ={this.props.setAppointmentId} />} 
     if ((this.props.page)==="Single Appointment"){return  <SingleAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)}/>}
-    if ((this.props.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)} locationData={this.props.locationData} therapistData={this.props.therapistData} providerClients={this.props.providerClients}/>}
-    if ((this.props.page)==="Create Appointment"){return <CreateAppointment/>}
+    if ((this.props.page)==="Edit Appointment"){return <EditAppointment singleAppointmentData={this.props.singleAppointmentData} setPage={this.props.setPage.bind(this)} locationData={this.props.allLocations} therapistData={this.props.allProviders} providerClients={this.props.allClients}/>}
+    if ((this.props.page)==="Create Appointment"){return <CreateAppointment allClients={this.props.allClients} allProviders={this.props.allProviders} allLocations={this.props.allLocations} setPage={this.props.setPage.bind(this)} />}
   }
   constructor() {
     super(...arguments);

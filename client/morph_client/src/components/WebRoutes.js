@@ -30,7 +30,10 @@ const WebRoutes = () => {
   const [locationData, setLoactionData] = useState([])
   const [therapistData, setTherapistData] = useState([])
   const [providerClients, setProviderClients] = useState([]);
-  const [page, setPage] = useState("Dashboard")
+  const [page, setPage] = useState("Dashboard");
+  const [allClients, setAllClients] = useState([]);
+  const [allProviders, setAllProviders] = useState([]);
+  const [allLocations, setAllLocations] = useState([]);
   
   
   useEffect(() => {
@@ -38,7 +41,9 @@ const WebRoutes = () => {
     getClientById(1).then((data) => setClientData(data));
     getLocations().then((data) => setLoactionData(data));
     getProviders().then((data) => setTherapistData(data));
-  
+    getClients().then((data) => setAllClients(data));
+    getProviders().then((data) => setAllProviders(data));
+    getLocations().then((data) => setAllLocations(data));
    }, [page]);
   
 
@@ -71,10 +76,10 @@ const WebRoutes = () => {
   return (
     
        <Routes>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/login' element={<Login/>} />
+        {/* <Route path='/' element={<HomePage />} /> */}
+        <Route path='/' element={<Login allClients={allClients} allProviders={allProviders}/>}/>
         <Route path='/signup' element={<Signup/>} />
-        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData} page={page} setPage={pageSetter} singleAppointmentData={singleAppointmentData} setAppointmentId={handleSetAppointment} locationData={locationData} therapistData={therapistData} providerClients={providerClients}/>} />
+        <Route path='/provider' element={<Provider appointmentData= {providerAppointmentData} page={page} setPage={pageSetter} singleAppointmentData={singleAppointmentData} setAppointmentId={handleSetAppointment} locationData={locationData} therapistData={therapistData} providerClients={providerClients} allClients={allClients} allProviders={allProviders} allLocations={allLocations}/>} />
         <Route path='/client' element={<Client appointmentData={clientAppointmentData} singleAppointmentData={singleAppointmentData}/>} />
         <Route path='/booking' element={<Booking/>} />
       </Routes>

@@ -3,18 +3,26 @@ import { useEffect, useState } from "react";
 
 import Box from '@mui/material/Box';
 import { fontSize, width } from "@mui/system";
-import { TextField, Button, MenuItem} from "@mui/material";
+import { TextField, Button, MenuItem, FormControl} from "@mui/material";
 import AdapterDateFns from '@mui/lab/AdapterDateFns';
 import LocalizationProvider from '@mui/lab/LocalizationProvider';
 import DesktopDatePicker from '@mui/lab/DesktopDatePicker';
-import format from "date-fns/format";
 import { TimePicker } from "@mui/lab";
-import { updateAppointment } from "../../service";
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
 
-const CreateAppointment = ({clientData, locationData, therapistData, setPage}) => {
+import format from "date-fns/format";
+
+import { createAppointment, updateAppointment } from "../../service";
+import { filterableGridColumnsIdsSelector } from "@mui/x-data-grid";
+
+const Alert = React.forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+});
+
+const CreateAppointment = ({allClients, allProviders, allLocations, setPage}) => {
 
     const [pageToDispaly, setPageToDisplay] = useState("loading");
-    const [aptId, setAptId] = useState("")
     const [aptType, setAptType] = useState("");
     const [clientId, setClientId] = useState("")
     const [dateValue, setDateValue] = useState(format(new Date(), "dd/MM/yyyy"))
@@ -22,38 +30,43 @@ const CreateAppointment = ({clientData, locationData, therapistData, setPage}) =
     const [endValue, setEndValue] = useState(new Date())
     const [providerId, setProviderId] = useState("")
     const [locationId, setLocationId] = useState("")
+    const [okOpen, setOkOpen] = useState(false);
+    const [failOpen, setFailOpen] = useState(false);
 
-    // useEffect(() => {
-    //     // if(Object.keys(singleAppointmentData).length !== 0){
-    //     //     console.log(singleAppointmentData.date)
-    //     //     console.log(new Date())
-    //     //     setPageToDisplay("content");
-    //     //     setAptId(singleAppointmentData.id);
-    //     //     setAptType(singleAppointmentData.type);
-    //     //     setDateValue(format(new Date(), "dd/MM/yyyy"))
-    //     //     // setDateValue(format(new Date(singleAppointmentData.date), "dd/MM/yyyy"));
-    //     //     setClientId(singleAppointmentData.client.id);
-    //     //     setProviderId(singleAppointmentData.provider.id);
-    //     //     setLocationId(singleAppointmentData.location.id);
-    //     }
-    // }, [singleAppointmentData]);
+    useEffect(() => {
+        if(Object.keys(allClients).length !== 0 && Object.keys(allProviders).length !== 0 &&
+                    Object.keys(allLocations)){
+            setPageToDisplay("content");
+        }
+    }, [allClients, allProviders, allLocations]);
 
-    const clients = clientData.map(client => {
+    // close for snackbar
+    const handleClose = (event, reason) => {
+        if (reason === 'clickaway') {
+          return;
+        }
+        setFailOpen(false);
+        setOkOpen(false);
+    };
+
+    // map of clients for menuitems
+    const clients = allClients.map(client => {
         return{
             value: client.id,
             label: client.firstName + " " + client.lastName
         }
     })
 
-    
-    const locations = locationData.map(location => {
+     // map of locations for menuitems
+    const locations = allLocations.map(location => {
         return{
             value: location.id,
             label: location.name
         };
     })
 
-    const therapists = therapistData.map(therapist => {
+     // map of therapists for menuitems
+    const therapists = allProviders.map(therapist => {
         return{
             value: therapist.id,
             label: therapist.firstName + " " + therapist.lastName,
@@ -67,205 +80,166 @@ const CreateAppointment = ({clientData, locationData, therapistData, setPage}) =
     if(pageToDispaly === "content"){
         return (
             <div>
-            <Box
-                style={{width: 550}}
-                sx={{
-                boxShadow: 10, // theme.shadows[1]
-                color: "primary.main", // theme.palette.primary.main
-                m: "auto", // margin: theme.spacing(1)
-                p: {
-                xs: 2, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                },
-                zIndex: "tooltip", // theme.zIndex.tooltip
-                minWidth: 100,
-                "& .MuiTextField-root": { m: 1, width: "20ch" },
-            }}
-            noValidate
-            autoComplete="off"
+                <Box
+                    omponent="form"
+                    style={{width: 550}}
+                    sx={{
+                    boxShadow: 10, // theme.shadows[1]
+                    color: "primary.main", // theme.palette.primary.main
+                    m: "auto", // margin: theme.spacing(1)
+                    p: {
+                    xs: 2, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
+                    },
+                    zIndex: "tooltip", // theme.zIndex.tooltip
+                    minWidth: 100,
+                    "& .MuiTextField-root": { m: 1, width: "20ch" },
+                }}
+                noValidate
+                autoComplete="off"
 
-            // className="provider-container"
-            >
-            <div className="display-panel">
-                <div>
-                <h2 >Edit Appointment</h2>
-                </div>
-                
-                <div>
-                <TextField
-                    // sx={{
-                    // boxShadow: 5, // theme.shadows[1]
-                    // color: "secondary.main", // theme.palette.primary.main
-                    // borderRadius: 2,
-                    // m: 0.5, // margin: theme.spacing(1)
-                    // p: {
-                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    // },
-                    // }}
-                    InputProps={{style: {fontSize: 18}}}
-                    label="Client name"
-                    defaultValue={"select client"}
-                    value={clientId}
-                    select
-                    onChange={handleClientChange}
-                    // size="small"
+                // className="provider-container"
                 >
-                    {clients.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                </div>
-                <div>
-                <TextField
-                    // sx={{
-                    // // boxShadow: 5, // theme.shadows[1]
-                    // color: "secondary.main", // theme.palette.primary.main
-                    // borderRadius: 2,
-                    // // m: 0.5, // margin: theme.spacing(1)
-                    // p: {
-                    //     // xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    // },
-                    // }}
-                    InputProps={{style: {fontSize: 18}}}
-                    label="Appointment Type"
-                    value={aptType}
-                    // size="small"
-                >
-                    data goes here
-                </TextField>
-                </div>
-                <div>
-                <LocalizationProvider dateAdapter={AdapterDateFns}>
-                    <DesktopDatePicker
-                        sx={{
-                            boxShadow: 5, // theme.shadows[1]
-                            color: "secondary.main", // theme.palette.primary.main
-                            borderRadius: 2,
-                            m: 0.5, // margin: theme.spacing(1)
-                            p: {
-                                xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                            },
-                        }}
-                        InputProps={{style: {fontSize: 18}}}
-                        size="small"
-                        label="Date"
-                        inputFormat="dd/MM/yyyy"
-                        value={dateValue}
-                        onChange={handleDateChange}
-                        renderInput={(params) => <TextField {...params} />}
-                    />
-                </LocalizationProvider>
-                </div>
-                <div id="timeWrapper">
-                    <div id="startTime">
+                    <FormControl/>
+                    <div className="display-panel">
+                        <div>
+                        <h2 >New Appointment</h2>
+                        </div>
+                        
+                        <div>
+                        <TextField
+                            InputProps={{style: {fontSize: 18}}}
+                            label="Client name"
+                            defaultValue={"select client"}
+                            value={clientId}
+                            select
+                            onChange={handleClientChange}
+                        >
+                            {clients.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        </div>
+                        <div>
+                        <TextField
+                            InputProps={{style: {fontSize: 18}}}
+                            label="Appointment Type"
+                            value={aptType}
+                            disabled
+                        >
+                            data goes here
+                        </TextField>
+                        </div>
+                        <div>
                         <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <TimePicker
-                                
+                            <DesktopDatePicker
                                 InputProps={{style: {fontSize: 18}}}
-                                label="Start Time"
-                                value={startValue}
-                                minutesStep={15}
-                                onChange={handleStartTimeChange}
-                                renderInput={(params) => <TextField {...params} />}
-                            />   
-                        </LocalizationProvider>
-                    </div>
-                    <div id="endTime" >
-                        <LocalizationProvider dateAdapter={AdapterDateFns}>
-                            <TimePicker
-                                InputProps={{style: {fontSize: 18}}}
-                                label="End Time"
-                                value={endValue}
-                                minutesStep={15}
-                                onChange={handleEndTimeChange}
+                                size="small"
+                                label="Date"
+                                inputFormat="dd/MM/yyyy"
+                                value={dateValue}
+                                onChange={handleDateChange}
                                 renderInput={(params) => <TextField {...params} />}
                             />
                         </LocalizationProvider>
+                        </div>
+                        <div id="timeWrapper">
+                            <div id="startTime">
+                                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                    <TimePicker  
+                                        InputProps={{style: {fontSize: 18}}}
+                                        label="Start Time"
+                                        value={startValue}
+                                        minutesStep={15}
+                                        onChange={handleStartTimeChange}
+                                        renderInput={(params) => <TextField {...params} />}
+                                    />   
+                                </LocalizationProvider>
+                            </div>
+                            <div id="endTime" >
+                                <LocalizationProvider dateAdapter={AdapterDateFns}>
+                                    <TimePicker
+                                        InputProps={{style: {fontSize: 18}}}
+                                        label="End Time"
+                                        value={endValue}
+                                        minutesStep={15}
+                                        onChange={handleEndTimeChange}
+                                        renderInput={(params) => <TextField {...params} />}
+                                    />
+                                </LocalizationProvider>
+                            </div>
+                        </div>
+
+                        <div>
+                        <TextField 
+                            InputProps={{style: {fontSize: 18}}}
+                            label="Therapist"
+                            defaultValue={"Select Therapist"}
+                            value={providerId}
+                            select
+                            onChange={handleTherapistChange}
+                        >
+                            {therapists.map((option) => (
+                                <MenuItem key={option.value} value={option.value} name={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        </div>
+                        <div>
+                        <TextField 
+                            InputProps={{style: {fontSize: 18}}}
+                            label="Location"
+                            defaultValue={"Select Location"}
+                            value={locationId}
+                            select
+                            onChange={handleLocationChange}
+                        >
+                            {locations.map((option) => (
+                                <MenuItem key={option.value} value={option.value}>
+                                    {option.label}
+                                </MenuItem>
+                            ))}
+                        </TextField>
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                <TextField 
-                    // sx={{
-                    // boxShadow: 5, // theme.shadows[1]
-                    // color: "secondary.main", // theme.palette.primary.main
-                    // borderRadius: 2,
-                    // m: 0.5, // margin: theme.spacing(1)
-                    // p: {
-                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    // },
-
-                    // }}
-                    InputProps={{style: {fontSize: 18}}}
-                    label="Therapist"
-                    defaultValue={"Select Therapist"}
-                    value={providerId}
-
-                    // size="small"
-                    select
-                    onChange={handleTherapistChange}
-                >
-                    {therapists.map((option) => (
-                        <MenuItem key={option.value} value={option.value} name={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                </div>
-                <div>
-                <TextField 
-                    // sx={{
-                    // boxShadow: 5, // theme.shadows[1]
-                    // color: "secondary.main", // theme.palette.primary.main
-                    // borderRadius: 2,
-                    // m: 0.5, // margin: theme.spacing(1)
-                    // p: {
-                    //     xs: 0.4, // [theme.breakpoints.up('xs')]: { padding: theme.spacing(1) }
-                    // },
-
-                    // }}
-                    InputProps={{style: {fontSize: 18}}}
-                    label="Location"
-                    defaultValue={"Select Location"}
-                    value={locationId}
-                    // size="small"
-                    select
-                    onChange={handleLocationChange}
-                >
-                    {locations.map((option) => (
-                        <MenuItem key={option.value} value={option.value}>
-                            {option.label}
-                        </MenuItem>
-                    ))}
-                </TextField>
-                </div>
-            </div>
-            <div>
-                <Button 
-                    style={{width: 100}}
-                    sx={{
-                        mt:3,
-                        mr:4,
-                        mb:2,
-                    }}
-                    variant="contained" 
-                    onClick={handleCancleClick}
-                    size="large"
-                >Cancel</Button>
-                <Button 
-                    style={{width: 100}}
-                    sx={{
-                        mt:3,
-                        ml:4,
-                        mb:2,
-                    }}
-                    variant="contained" 
-                    onClick={handleUpdateClick}
-                    size="large"
-                >Update</Button>
-            </div>
-            </Box>
+                    <div>
+                        <Button 
+                            style={{width: 100}}
+                            sx={{
+                                mt:3,
+                                mr:4,
+                                mb:2,
+                            }}
+                            variant="contained" 
+                            onClick={handleCancleClick}
+                            size="large"
+                        >Cancel</Button>
+                        <Button 
+                            style={{width: 100}}
+                            sx={{
+                                mt:3,
+                                ml:4,
+                                mb:2,
+                            }}
+                            variant="contained" 
+                            onClick={handleCreateClick}
+                            size="large"
+                        >Confirm</Button>
+                    </div>
+                          
+                </Box>
+                <Snackbar open={okOpen} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="success" sx={{ width: '100%' }}>
+                        Appointment created successfully!
+                    </Alert>
+                </Snackbar>
+                <Snackbar open={failOpen} autoHideDuration={6000} onClose={handleClose}>
+                    <Alert onClose={handleClose} severity="error" sx={{ width: '100%' }}>
+                        Appointment could not be created!
+                    </Alert>
+                </Snackbar>
             </div>
             
         );
@@ -273,7 +247,8 @@ const CreateAppointment = ({clientData, locationData, therapistData, setPage}) =
             setClientId(event.target.value);
         }
 
-        function handleUpdateClick(){
+        function handleCreateClick(){
+            // create body for Post Request
             const st = format(new Date(startValue), "hh:mm")
             const et = format(new Date(endValue), "hh:mm")
             const cId = String(clientId)
@@ -287,15 +262,26 @@ const CreateAppointment = ({clientData, locationData, therapistData, setPage}) =
                 location: {id:locationId},
                 room: {id: 1}
             }
-            console.log(payload)
-            console.log(aptId)
-            updateAppointment(payload, aptId);
-            setPage("Appointments")
+            // Make fetch request and store result
+            const result = createAppointment(payload);
+            result.then((info) => {
+                console.log(info.status)
+                // Display results in snackbar
+                if(info.status === 201){
+                    console.log("success!")
+                    setOkOpen(true)
+                    setTimeout(()=> {setPage("Appointments")}, 3000)
+                }else {
+                    console.log("failure!")
+                    setFailOpen(true)
+                }
+            })
+        }
 
-        }
         function handleCancleClick(){
-            setPage("Single Appointment")
+            setPage("Appointments")
         }
+
         function handleLocationChange(event){
             setLocationId(event.target.value)
         }
